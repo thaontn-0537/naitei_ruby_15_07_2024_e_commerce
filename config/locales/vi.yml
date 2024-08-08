@@ -18,13 +18,21 @@ vi:
     new:
       title: "Đăng nhập"
       login: "Đăng nhập"
-      register_now: "Chưa có tài khoản? Đăng ký ngay!"
+      no_account?: "Chưa có tài khoản? "
+      register_now: "Đăng ký ngay!"
       remember_me: "Ghi nhớ tài khoản của tôi"
-      or: "hoặc"
-      home_without_login: "Truy cập trang web không cần đăng nhập!"
       language: "Ngôn ngữ"
       vietnamese: "Tiếng Việt"
       english: "Tiếng Anh"
+  users:
+    new:
+      title: "Đăng ký"
+      signup: "Đăng ký"
+      already_have_account?: "Đã có tài khoản?"
+      login_now: "Đăng nhập ngay!"
+      language: "Ngôn ngữ"
+      english: "Tiếng Anh"
+      vietnamese: "Tiếng Việt"
   layouts:
     header:
       search:
@@ -37,6 +45,10 @@ vi:
       log_out: "Đăng xuất"
       log_in: "Đăng nhập"
       sign_up: "Đăng ký"
+  shared:
+    access_without_login:
+      or: "hoặc"
+      home_without_login: "Truy cập trang web không cần đăng nhập!"
   flash:
     invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."
   carts:
@@ -52,3 +64,4 @@ vi:
       product_count: "sản phẩm"
       buy: "MUA"
     empty_cart: "Không có sản phẩm trong giỏ hàng"
+    success_signup: "Tạo tài khoản thành công"

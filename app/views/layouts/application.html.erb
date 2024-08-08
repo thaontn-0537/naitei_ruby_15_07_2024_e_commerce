@@ -11,11 +11,15 @@
   </head>
 
   <body>
-    <% unless controller_name == "sessions" %>
+    <% unless skip_header? %>
       <%= render "layouts/header" %>
     <% end %>
-    <div class="container">
+    <% unless skip_container? %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <% else %>
       <%= yield %>
-    </div>
+    <% end %>
   </body>
 </html>

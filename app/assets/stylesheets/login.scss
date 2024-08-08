@@ -61,10 +61,29 @@
 
 .register-link {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 14px;
-  color: $pink
+  color: $black;
+
+  .signup-text {
+    color: $pink;
+  }
+
+  .signup-link {
+    a {
+      color: $pink;
+
+      &:link {
+        color: $pink;
+      }
+
+      &:hover {
+        color: $light-pink
+      }
+    }
+  }
 }
+
 
 .login-form {
   background-color: $white;
@@ -119,6 +138,7 @@
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
+  color: $light-gray;
 }
 
 .home-link {
@@ -128,5 +148,9 @@
 
   a {
     color: $pink;
+
+    &:hover {
+      color: $light-pink
+    }
   }
 }

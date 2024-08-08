@@ -11,4 +11,12 @@ module ApplicationHelper
     record.image.variant(resize_to_fill: [Settings.list.image_size,
                                           Settings.list.image_size]).processed
   end
+
+  def skip_header?
+    action_name == "new"
+  end
+
+  def skip_container?
+    action_name == "new"
+  end
 end
