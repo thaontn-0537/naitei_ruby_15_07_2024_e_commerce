@@ -1,8 +1,9 @@
 class User < ApplicationRecord
-  enum role: {user: 0, admin: 1}
+  enum role: {user: 0, admin: 1}, _prefix: true
   VALID_EMAIL_REGEX = Regexp.new(Settings.value.valid_email)
+  VALID_PHONE_REGEX = Regexp.new(Settings.value.phone_format)
 
-  validates :name, presence: true,
+  validates :user_name, presence: true,
     length: {maximum: Settings.value.max_user_name}
   validates :email, presence: true,
     length: {maximum: Settings.value.max_user_email},
@@ -13,7 +14,7 @@ class User < ApplicationRecord
     allow_nil: true
   validates :phone,
             length: {is: Settings.value.phone},
-            format: {with: Settings.value.phone_format}
+            format: {with: VALID_PHONE_REGEX}
 
   has_many :addresses, dependent: :destroy
   has_many :carts, dependent: :destroy

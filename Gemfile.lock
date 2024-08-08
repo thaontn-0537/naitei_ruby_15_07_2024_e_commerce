@@ -282,6 +282,7 @@ DEPENDENCIES
   active_storage_validations (= 0.9.8)
   bootsnap
   capybara
+  config
   debug
   image_processing (= 1.12.2)
   importmap-rails
