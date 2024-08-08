@@ -4,7 +4,7 @@ value:
   min_user_password: 8
   valid_email: \A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z
   phone: 10
-  phone_format: /\A\d{10}\z/
+  phone_format: \A(84|0)(3|5|7|8|9)[0-9]{8}\z
   comment_length: 1000
   min_numeric: 0
   rate_min: 1

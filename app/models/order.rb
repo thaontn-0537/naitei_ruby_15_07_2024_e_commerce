@@ -8,11 +8,10 @@ class Order < ApplicationRecord
     in_transit: 2,
     delivered: 3,
     cancelled: 4
-  }
+  }, _prefix: true
   validates :total, presence: true,
     numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
-  validates :created_at, presence: true
   validates :place, presence: true
   validates :status, presence: true
-  validates :refuse_reason, presence: true, if: ->{cancelled?}
+  validates :refuse_reason, presence: true, if: ->{status_cancelled?}
 end
