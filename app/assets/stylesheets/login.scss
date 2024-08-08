@@ -1,0 +1,132 @@
+@import 'color';
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  background-color: $primary;
+}
+
+.logo-section {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form {
+  background-color: $white;
+  flex: 1;
+  padding: 80px 60px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 4px 10px $box_shadow;
+}
+
+.login-form h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid $light-gray;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: $pink;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-submit:hover {
+  background-color: $light-pink;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: $pink
+}
+
+.login-form {
+  background-color: $white;
+  flex: 1;
+  padding: 80px 60px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 4px 10px $box_shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.checkbox {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: $pink;
+
+  span {
+    font-weight: normal;
+    margin-left: 20px;
+  }
+}
+
+#session_remember_me {
+  margin-left: 0;
+  width: auto;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 14px;
+}
+
+.language-switcher a {
+  text-decoration: none;
+  color: $pink;
+}
+
+.or {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.home-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+
+  a {
+    color: $pink;
+  }
+}

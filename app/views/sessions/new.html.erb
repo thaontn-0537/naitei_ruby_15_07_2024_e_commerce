@@ -1,0 +1,57 @@
+<% provide :title, t(".title") %>
+<div class="login-container">
+  <div class="logo-section">
+    <%= image_tag "logo.png", alt: "Logo", class: "logo" %>
+  </div>
+
+  <div class="login-form">
+    <div class="language-switcher">
+      <div class="dropdown">
+        <%= link_to "#", id: "language", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
+          <%= t ".language", class: "dropdown" %>
+        <% end %>
+        <ul id="dropdown-menu" class="dropdown-menu">
+          <li><%= link_to t(".english"), locale: :en %></li>
+          <li><%= link_to t(".vietnamese"), locale: :vi %></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2><%= t ".title" %></h2>
+
+    <%= form_for :session, url: login_path do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>
+          <%= t ".remember_me" %>
+        </span>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit t(".login"), class: "btn-submit" %>
+      </div>
+    <% end %>
+
+    <div class="register-link">
+      <%= t ".register_now" %>
+    </div>
+
+    <div class="or">
+      <%= t ".or" %>
+    </div>
+
+    <div class="home-link">
+      <%= link_to t(".home_without_login"), root_path %>
+    </div>
+  </div>
+</div>
