@@ -1,0 +1,90 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'color';
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: $white;
+  text-decoration: none;
+}
+
+.custom-search {
+  max-width: 600px;
+  border: 1px solid $black;
+  border-radius: 2rem;
+  box-shadow: none;
+}
+
+.header {
+  background-color: $primary
+}
+
+.header .nav-link {
+  color: $cart
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 70px;
+  height: auto;
+}
+
+.pfp-image {
+  width: 40px;
+  height: auto;
+}
+
+.cart-icon {
+  font-size: 2em;
+  padding: 0.25em;
+}
+
+/* Dropdown menu */
+.dropdown-menu.active {
+  display: block;
+  width: fit-content;
+}
+
+.dropdown {
+  color: $cart;
+  width: fit-content;
+  margin-right: 5px;
+}
+
+.dropdown-menu {
+  margin-left: -80px;
+  width: fit-content;
+}
+
+.shopping_cart {
+  width: 40px;
+  height: 30px;
+}
+
+.language-dropdown {
+  color: $cart;
+}
+
+.dropdown-toggle {
+  color: $cart;
+}
+
+.header-text {
+  color: $cart;
+  margin-left: 10px;
+  margin-right: 10px;
+}
