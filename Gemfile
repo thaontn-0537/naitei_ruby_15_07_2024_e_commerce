@@ -6,6 +6,7 @@ ruby "3.2.2"
 gem "active_storage_validations", "0.9.8"
 gem "bootsnap", require: false
 gem "config"
+gem "faker", "2.21.0"
 gem "image_processing", "1.12.2"
 gem "importmap-rails"
 gem "jbuilder"
