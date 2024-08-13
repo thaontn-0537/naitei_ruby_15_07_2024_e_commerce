@@ -1,0 +1,48 @@
+@import 'color';
+
+.category-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .gravatar {
+    width: 7.5vw;
+    height: 7.5vw;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+
+  .category-name {
+    text-decoration: none;
+    color: $dark-blue;
+    font-size: 16px;
+    display: block;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+}
+
+.selected {
+  img {
+    border: 5px solid $border-pink;
+    transform: scale(0.9);
+  }
+
+  .category-name {
+    color: $text-pink;
+    font-weight: 600;
+  }
+}

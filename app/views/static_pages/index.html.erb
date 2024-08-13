@@ -1,0 +1,13 @@
+<% provide :title, t(".title") %>
+<h1><%= t ".featured_products" %></h1>
+<div class="category-show">
+  <ul class="category-display-list">
+    <%= render partial: "products/category_list", collection: @categories, as: :category %>
+  </ul>
+</div>
+
+<div class="product-show">
+  <ul id ="product-display" class="product-display-list">
+    <%= render partial: "products/product_list", collection: @featured_products, as: :product %>
+  </ul>
+</div>

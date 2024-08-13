@@ -14,6 +14,7 @@ users = 30.times.map do
     created_at: DateTime.now
   )
 end
+
 #Seed address
 users.each do |user|
   2.times do
@@ -87,6 +88,7 @@ end
                           rating: rand(0.0..5.0).round(1),
                           category_id: Category.find(5).id)
 end
+
 #Seed comments
 products = Product.all
 
@@ -108,7 +110,7 @@ users.each do |user|
   rand(2..5).times do
     order = Order.new(
       user: user,
-      total: rand(10000..1000000),
+      total: Faker::Number.between(from: 10_000, to: 1_000_000),
       paid_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
       place: Faker::Address.full_address,
       status: rand(0..4),
@@ -126,6 +128,7 @@ users.each do |user|
 
     order.save!
   end
+
   # Seed Cart
   product = Product.order("RAND()").limit(1).first
   cart = Cart.create!(

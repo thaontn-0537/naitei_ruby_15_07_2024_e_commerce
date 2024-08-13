@@ -11,8 +11,9 @@ vi:
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
   static_pages:
-    home:
+    index:
       title: "Trang chủ"
+      featured_products: "Sản phẩm nổi bật"
   sessions:
     new:
       title: "Đăng nhập"

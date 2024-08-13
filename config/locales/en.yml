@@ -11,8 +11,9 @@ en:
         password: "Password"
         password_confirmation: "Password confirmation"
   static_pages:
-    home:
+    index:
       title: "Home"
+      featured_products: "Featured Products"
   sessions:
     new:
       title: "Log in"
