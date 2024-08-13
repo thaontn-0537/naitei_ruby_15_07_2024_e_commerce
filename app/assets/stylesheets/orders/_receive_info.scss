@@ -1,0 +1,48 @@
+.select-wrapper {
+  position: relative;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  font-weight: 400;
+  transition: transform 0.2s ease;
+}
+
+.select-wrapper.open .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.popup-button button{
+  display: block;
+  padding: 5px 10px;
+  text-align: center;
+  background-color: $text-pink;
+  color: white;
+  font-size: 14px;
+  font-weight: 550;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.popup-button button:hover{
+  background-color: $button-hover;
+  color: white;
+}

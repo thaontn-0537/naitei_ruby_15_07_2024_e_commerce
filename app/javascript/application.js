@@ -4,6 +4,9 @@ import 'custom/menu'
 import './config/jquery'
 import './products/show_products.js'
 import { Turbo } from '@hotwired/turbo-rails'
+import './orders/_receive_info.js'
+import './controllers/toastr.min'
+//= require toastr
 
 document.addEventListener('DOMContentLoaded', function() {
   const showLoginPopup = document.getElementById('show-login-popup');

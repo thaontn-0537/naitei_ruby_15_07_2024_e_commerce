@@ -1,0 +1,22 @@
+<%= form_with(model: @order, local: true) do |f| %>
+  <div class="receive_info">
+    <div class="form-group">
+      <%= f.label :user_name, t("orders.order_info.receive_info.user_name") %>
+      <%= f.text_field :user_name, value: current_user.user_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :place, t("orders.order_info.receive_info.place") %>
+      <div class="select-wrapper">
+        <%= f.select :place, options_for_select(@addresses.map {|a| [a.place, a.place]}, @address&.place), {include_blank: t("orders.order_info.receive_info.blank")}, class: "form-control custom-select", required: true, id: "address-select" %>
+        <img src="/assets/arrow_down.png" alt="Dropdown Arrow" class="select-arrow">
+      </div>
+    </div>
+    <div class="popup-button">
+      <button type="button" id="openPopupBtn"><%= t "orders.order_info.receive_info.button" %></button>
+    </div>
+    <div class="form-group">
+      <%= f.label :user_phone, t("orders.order_info.receive_info.user_phone") %>
+      <%= f.telephone_field :user_phone, value: @current_user.phone || "", class: "form-control", required: true %>
+    </div>
+  </div>
+<% end %>

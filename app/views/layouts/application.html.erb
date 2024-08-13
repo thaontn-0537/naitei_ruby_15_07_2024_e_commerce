@@ -15,6 +15,9 @@
       <%= render "layouts/header" %>
     <% end %>
     <%= render "shared/login_modal" %>
+    <% unless flash.empty? %>
+      <%= render "shared/flash_messages" %>
+    <% end %>
     <% unless skip_container? %>
       <div class="container">
         <%= yield %>
@@ -22,5 +25,9 @@
     <% else %>
       <%= yield %>
     <% end %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
   </body>
 </html>

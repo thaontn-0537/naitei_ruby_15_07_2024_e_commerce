@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   before_action :set_search_query
+  before_action :current_user
 
   def set_search_query
     @q = Product.ransack(params[:q])

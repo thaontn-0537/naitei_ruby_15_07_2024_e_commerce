@@ -1,0 +1,148 @@
+.order-info-show{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.order_summary{
+  width: 30%;
+}
+.order-show{
+  display: flex;
+  gap: 10%;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $popup;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: $white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+// Payment Method
+.payment-methods {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.payment-image img {
+  width: 100px;
+  height: auto;
+  margin-left: 10px;
+}
+
+// Order summary
+.order-summary {
+  border: 1px solid $border-gray;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: $white;
+}
+
+.order-summary h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.order-items-container {
+  max-height: 250px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.order-items-container::-webkit-scrollbar {
+  display: none;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.item-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details p {
+  margin: 0;
+}
+
+.item-price {
+  color: $dark-blue;
+  font-weight: bold;
+}
+
+.order-summary-details {
+  border-top: 1px solid $border-gray;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+.order-summary-details p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.total-price {
+  font-size: 1.2em;
+  color: $text-bold;
+  font-weight: bold;
+}
+
+.btn-order {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color: $light-pink;
+  color: $white;
+  font-size: 1.1em;
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn-order:hover {
+  background-color: $button-hover;
+}

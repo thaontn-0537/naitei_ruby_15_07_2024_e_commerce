@@ -20,5 +20,8 @@ Rails.application.routes.draw do
       end
     end
     resources :carts, only: %i(index create update destroy)
+    resources :addresses, only: %i(new create)
+    get "orders/order_info"
+    post "orders", to: "orders#create"
   end
 end

@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
+  has_many :orders, dependent: :nullify
   has_one_attached :image
   attr_accessor :remember_token
 

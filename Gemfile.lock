@@ -94,6 +94,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     config (5.5.1)
       deep_merge (~> 1.2, >= 1.2.1)
@@ -161,6 +162,11 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.11)
+      pry (>= 0.13.0)
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -274,6 +280,8 @@ GEM
     thor (1.2.2)
     tilt (2.4.0)
     timeout (0.4.0)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -316,6 +324,7 @@ DEPENDENCIES
   jbuilder
   mysql2 (~> 0.5)
   pagy
+  pry-rails
   puma (~> 5.0)
   rails (~> 7.0.5)
   rails_config
@@ -328,6 +337,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  toastr-rails
   turbo-rails
   tzinfo-data
   web-console

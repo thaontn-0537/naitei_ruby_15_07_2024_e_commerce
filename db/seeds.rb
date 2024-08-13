@@ -160,6 +160,9 @@ users.each do |user|
   rand(2..5).times do
     order = Order.create!(
       user_id: user.id,
+      user_name: user.user_name,
+      user_phone: user.phone,
+      payment_method: "momo",
       total: Faker::Number.between(from: 10_000, to: 1_000_000),
       paid_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
       place: Faker::Address.full_address,
@@ -175,6 +178,7 @@ users.each do |user|
         price: product.price
       )
     end
+    order.save!
   end
 end
 

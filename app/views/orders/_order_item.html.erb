@@ -1,0 +1,10 @@
+<div class="order-item">
+  <div class="item-image">
+    <%= image_tag order_item[:product].image %>
+  </div>
+  <div class="item-details">
+    <p><%= order_item[:product].product_name %></p>
+    <p><%= order_item[:cart].quantity %> x <span class="item-price"><%= format_currency order_item[:product].price %></span></p>
+  </div>
+  <p><%= format_currency order_item[:item_total] %></p>
+</div>

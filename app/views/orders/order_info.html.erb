@@ -1,0 +1,56 @@
+<% provide :title, t(".title") %>
+<h1><%= t ".title" %></h1>
+
+<%= form_with model: @order, local: true do |form| %>
+  <div class="order-show">
+    <div class="order-info-show">
+      <div id="receive_info" class="receive_info">
+        <%= render partial: "receive_info", locals: {current_user: @current_user, order: @order} %>
+      </div>
+
+      <div id="payment-method" class="payment-method">
+        <h4><%= t "orders.order_info.payment_title" %></h4>
+        <div class="payment-methods">
+          <div class="payment-option">
+            <div class="payment-image">
+              <%= image_tag "vnpay_logo.avif", alt: "VNPay" %>
+            </div>
+            <%= form.radio_button :payment_method, "vnpay", id: "vnpay" %>
+          </div>
+          <div class="payment-option">
+            <div class="payment-image">
+              <%= image_tag "momo_logo.png", alt: "MoMo" %>
+            </div>
+            <%= form.radio_button :payment_method, "momo", id: "momo" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="order_summary" class="order_summary">
+      <div class="order-summary">
+        <h3><%= t "orders.order_info.summary.title" %></h3>
+        <div class="order-items-container">
+          <% if @order_items_ids.present? %>
+            <%= render partial: "order_item", collection: @order_items, as: :order_item %>
+            <% total_amount = calculate_total_amount @order_items_ids %>
+          <% else %>
+            <p><%= t "orders.order_info.summary.empty_cart" %></p>
+          <% end %>
+        </div>
+        <div class="order-summary-details">
+          <p><strong><%= t "orders.order_info.summary.total" %></strong> 
+          <span class="total-price"><%= format_currency total_amount %></span></p>
+        </div>
+        <%= form.submit t("orders.order_info.summary.submit_button"), class: "btn-order" %>
+      </div>
+    </div>
+
+    <div id="addressPopup" class="popup" style="display:none;">
+      <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <%= render "addresses/address_form" %>
+      </div>
+    </div>
+  </div>
+<% end %>
