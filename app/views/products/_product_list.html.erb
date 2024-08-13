@@ -1,5 +1,5 @@
 <li class="product-list-item">
-  <%= gravatar_for product, size: Settings.list.gravatar_size %>
+  <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") %>
   <div class="product-list-item-info">
     <div class="product-list-item-name-rating">
       <h3 class="product-list-item-name"><%= product.product_name %></h3>
