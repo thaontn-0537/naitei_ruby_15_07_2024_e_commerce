@@ -3,10 +3,22 @@ $black: #000;
 $primary: #ffd8e4;
 $pink: #eb344c;
 $light-pink: #ff586e;
-$box_shadow: rgba(0, 0, 0, 0.1);
 $light-gray: #ccc;
 $cart: #eb344c;
 $dark-blue: #235284;
 $border-pink: #e49eae;
 $text-pink: #F092AF;
-$box-shadow: #00000015;
+
+$price-color: #235284;
+$total-price-color: #EC221F;
+$cart-color1: rgba(202, 240, 248, 0.34);
+$box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.25);
+
+$btn-primary-bg: #FC693B;
+$btn-primary-hover-bg: #e08e0b;
+
+$btn-quantity-minus-bg: #EC221F;
+$btn-quantity-minus-hover-bg: #c11a17;
+$btn-quantity-plus-bg: #14AE5C;
+$btn-quantity-plus-hover-bg: #10963e;
+$input-quantity-border: #CAF0F8;

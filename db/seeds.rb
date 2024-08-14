@@ -29,7 +29,7 @@ users = 15.times.map do
     filename: "user_#{user.id}_image.jpg",
     content_type: "image/jpeg"
   )
-  
+
   user
 end
 
@@ -137,7 +137,7 @@ end
   )
 end
 
-15.times do
+5.times do
   product5 = Product.create!(
     product_name: "Áo khoác",
     price: rand(1000..200000),
@@ -153,28 +153,6 @@ end
     filename: "product_#{product5.id}_image.jpg",
     content_type: "image/jpeg"
   )
-end
-
-# Seed Feedback
-products = Product.all
-
-products.each do |product|
-  5.times do
-    feedback = Feedback.create!(
-      user_id: User.pluck(:id).sample,
-      product_id: product.id,
-      rating: rand(1..5),
-      comment: Faker::Lorem.paragraph,
-      created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
-      updated_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
-    )
-
-    feedback.image.attach(
-      io: URI.open("https://picsum.photos/200/200?random=1"),
-      filename: "feedback_#{feedback.id}_image.jpg",
-      content_type: "image/jpeg"
-    )
-  end
 end
 
 # Seed Orders
@@ -207,6 +185,27 @@ users.each do |user|
       user_id: user.id,
       product_id: product_id,
       quantity: rand(1..5)
+    )
+  end
+end
+# Seed Feedback
+products = Product.all
+
+products.each do |product|
+  5.times do
+    feedback = Feedback.create!(
+      user_id: User.pluck(:id).sample,
+      product_id: product.id,
+      rating: rand(1..5),
+      comment: Faker::Lorem.paragraph,
+      created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
+      updated_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
+    )
+
+    feedback.image.attach(
+      io: URI.open("https://picsum.photos/200/200?random=1"),
+      filename: "feedback_#{feedback.id}_image.jpg",
+      content_type: "image/jpeg"
     )
   end
 end

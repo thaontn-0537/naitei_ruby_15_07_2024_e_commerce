@@ -17,3 +17,5 @@ featured:
   limit: 10
 list:
   image_size: 150
+  gravatar_size: 150
+page_10: 10

@@ -27,7 +27,7 @@
           <% if logged_in? %>
             <ul class="navbar-nav d-flex align-items-center">
               <li class="nav-item me-3">
-                <%= link_to "#", class: "nav-link cart-icon" do %>
+                <%= link_to cart_path, class: "nav-link cart-icon" do %>
                   <%= image_tag "shopping_cart", class: "shopping_cart" %>
                 <% end %>
               </li>
