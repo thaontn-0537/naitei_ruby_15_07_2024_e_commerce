@@ -1,0 +1,18 @@
+vi:
+  defaults:
+    name: "Boutique Design"
+  static_pages:
+    home:
+      title: "Trang chủ"
+  layouts:
+    header:
+      search:
+        placeholder: "Tìm kiếm sản phẩm ưa thích của bạn"
+      language: "Ngôn ngữ"
+      vietnamese: "Tiếng Việt"
+      english: "Tiếng Anh"
+      profile: "Trang cá nhân"
+      order_history: "Lịch sử mua hàng"
+      log_out: "Đăng xuất"
+      log_in: "Đăng nhập"
+      sign_up: "Đăng ký"
