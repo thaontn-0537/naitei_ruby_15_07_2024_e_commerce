@@ -1,0 +1,37 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.category-show {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.product-show {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.category-display-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  margin: 20px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.product-display-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-top: 30px;
+  gap: 30px;
+  row-gap: 30px;
+}

@@ -295,6 +295,7 @@ GEM
 
 PLATFORMS
   x86_64-linux
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations (= 0.9.8)

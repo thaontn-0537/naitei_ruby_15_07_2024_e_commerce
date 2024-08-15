@@ -1,0 +1,11 @@
+<li class="product-list-item">
+  <%= gravatar_for product, size: Settings.list.gravatar_size %>
+  <div class="product-list-item-info">
+    <div class="product-list-item-name-rating">
+      <h3 class="product-list-item-name"><%= product.product_name %></h3>
+      <h3 class="product-list-item-rating"><span class="star-icon">★</span><%= product.rating %></h3>
+    </div>
+    <h3 class="product-list-item-desc"><%= product.description %></h3>
+    <p class="product-list-item-price"><%= product.price %> đ</p>
+  </div>
+</li>

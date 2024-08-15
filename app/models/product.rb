@@ -17,4 +17,23 @@ class Product < ApplicationRecord
             numericality: {greater_than_or_equal_to: Settings.value.min_numeric,
                            less_than_or_equal_to: Settings.value.rate_max},
             allow_nil: true
+
+  scope(:featured, lambda do
+    select(
+      "products.*,
+          (#{Settings.featured.rating_weight} * COALESCE(products.rating, 0) +
+            #{Settings.featured.sold_weight} * COALESCE(products.sold, 0) +
+            #{Settings.featured.feedback_weight} * COALESCE(
+            COUNT(feedbacks.id), 0)) AS score,
+          COUNT(feedbacks.id) AS feedback_count"
+    )
+      .joins("LEFT JOIN feedbacks ON feedbacks.product_id = products.id")
+      .group("products.id")
+      .having("products.rating >= #{Settings.featured.min_rating}")
+      .order("score DESC")
+      .limit(Settings.featured.limit)
+  end)
+  scope(:by_category_ids, lambda do |category_ids|
+    where(category_id: category_ids) if category_ids.present?
+  end)
 end
