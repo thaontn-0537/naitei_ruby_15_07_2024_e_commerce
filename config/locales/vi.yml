@@ -1,9 +1,29 @@
 vi:
   defaults:
     name: "Boutique Design"
+  activerecord:
+    models:
+      users: "Người dùng"
+    attributes:
+      user:
+        user_name: "Tên"
+        email: "Email"
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
   static_pages:
     home:
       title: "Trang chủ"
+  sessions:
+    new:
+      title: "Đăng nhập"
+      login: "Đăng nhập"
+      register_now: "Chưa có tài khoản? Đăng ký ngay!"
+      remember_me: "Ghi nhớ tài khoản của tôi"
+      or: "hoặc"
+      home_without_login: "Truy cập trang web không cần đăng nhập!"
+      language: "Ngôn ngữ"
+      vietnamese: "Tiếng Việt"
+      english: "Tiếng Anh"
   layouts:
     header:
       search:
@@ -16,3 +36,5 @@ vi:
       log_out: "Đăng xuất"
       log_in: "Đăng nhập"
       sign_up: "Đăng ký"
+  flash:
+    invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."

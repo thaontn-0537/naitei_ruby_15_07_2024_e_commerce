@@ -1,9 +1,29 @@
 en:
   defaults:
     name: "Boutique Design"
+  activerecord:
+    models:
+      users: "Users"
+    attributes:
+      user:
+        user_name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
   static_pages:
     home:
       title: "Home"
+  sessions:
+    new:
+      title: "Log in"
+      login: "Log in"
+      register_now: "No account yet? Register now!"
+      remember_me: "Remember me"
+      or: "or"
+      home_without_login: "Use our page without signing in!"
+      language: "Language"
+      english: "English"
+      vietnamese: "Vietnamese"
   layouts:
     header:
       search:
@@ -15,4 +35,6 @@ en:
       order_history: "Order history"
       log_out: "Log out"
       log_in: "Log in"
-      sign_up: "Sign_up"
+      sign_up: "Sign up"
+  flash:
+    invalid_email_password_combination: "Invalid email and password combination. Please try again."

@@ -40,13 +40,13 @@
                     <li><%= link_to t(".profile"), "#" %></li>
                     <li><%= link_to t(".order_history"), "#" %></li>
                     <li class="divider"></li>
-                    <li><%= link_to t(".log_out"), "#" %></li>
+                    <li><%= link_to t(".log_out"), logout_path, data: {"turbo-method": :delete}%></li>
                   </ul>
                 </div>
               </li>
             </ul>
           <% else %>
-            <%= link_to "#", class: "header-text" do %>
+            <%= link_to login_path, class: "header-text" do %>
               <%= t ".log_in" %>
             <% end %>
             <%= link_to "#", class: "header-text" do %>
