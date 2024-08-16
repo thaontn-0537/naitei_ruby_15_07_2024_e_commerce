@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   before_save :downcase_email
-  ACCOUNT_PARAMS = %i(user_name email password password_confirmation).freeze
+  ACCOUNT_PARAMS = %i(user_name email phone
+                      password password_confirmation).freeze
 
   enum role: {user: 0, admin: 1}, _prefix: true
   VALID_EMAIL_REGEX = Regexp.new(Settings.value.valid_email)

@@ -19,10 +19,20 @@
 
     <h2><%= t ".title" %></h2>
 
-    <%= form_for :session, url: login_path do |f| %>
+    <%= form_for @user, url: signup_path do |f| %>
+      <div class="form-group">
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name, class: "form-control" %>
+      </div>
+
       <div class="form-group">
         <%= f.label :email %>
         <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: "form-control" %>
       </div>
 
       <div class="form-group">
@@ -30,24 +40,22 @@
         <%= f.password_field :password, class: "form-control" %>
       </div>
 
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>
-          <%= t ".remember_me" %>
-        </span>
-      <% end %>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
 
       <div class="form-group">
-        <%= f.submit t(".login"), class: "btn-submit" %>
+        <%= f.submit t(".signup"), class: "btn-submit" %>
       </div>
     <% end %>
 
     <div class="register-link">
       <span class="sigup-text">
-        <%= t ".no_account?" %>
+        <%= t ".already_have_account?" %>
       </span>
       <span class="signup-link">
-        <%= link_to t(".register_now"), signup_path %>
+        <%= link_to t(".login_now"), login_path %>
       </span>
     </div>
     <%= render "shared/access_without_login" %>
