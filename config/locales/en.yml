@@ -39,3 +39,16 @@ en:
       sign_up: "Sign up"
   flash:
     invalid_email_password_combination: "Invalid email and password combination. Please try again."
+  carts:
+    cart_header:
+      product: "Product"
+      price: "Price"
+      quantity: "Quantity"
+      total: "Total"
+      action: "Action"
+    index:
+      title: "Cart"
+      total_cart: "TOTAL CART"
+      product_count: "products"
+      buy: "BUY"
+    empty_cart: "No product in cart"

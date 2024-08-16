@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <input type="checkbox" class="product-checkbox">
+  </td>
+  <td class="product-image">
+    <%= image_tag(cart.product.image, alt: cart.product.product_name, class: "product-image") %>
+  </td>
+  <td class="product-name"><%= cart.product.product_name %></td>
+  <td class="product-price">
+    <span class="value"><%= format_price cart.product.price %></span>
+  </td>
+  <td class="quantity-container">
+    <div class="quantity-btn" >-</div>
+    <input type="text" class="quantity-input" value="<%= cart.quantity %>">
+    <div class="quantity-btn" >+</div>
+  </td>
+  <td class="total-price">
+    <span class="value"><%= format_price(calculate_product_price(cart.product, cart.quantity)) %></span>
+  </td>
+  <td class="actions">
+    <div class="delete-button">
+      <div><%= image_tag "delete.png" %></div>
+    </div>
+  </td>
+</tr>

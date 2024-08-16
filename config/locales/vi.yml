@@ -39,3 +39,16 @@ vi:
       sign_up: "Đăng ký"
   flash:
     invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."
+  carts:
+    cart_header:
+      product: "Sản phẩm"
+      price: "Đơn giá"
+      quantity: "Số lượng"
+      total: "Số tiền"
+      action: "Hành động"
+    index:
+      title: "Giỏ hàng"
+      total_cart: "TỔNG GIỎ HÀNG"
+      product_count: "sản phẩm"
+      buy: "MUA"
+    empty_cart: "Không có sản phẩm trong giỏ hàng"

@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     root "static_pages#index"
     get "static_pages/index"
     get "ajax_products", to: "static_pages#load_products"
+    get "/cart", to: "carts#index"
   end
 end

@@ -1,0 +1,29 @@
+<% provide :title, t(".title") %>
+<h1><%= t ".title" %></h1>
+<div class="row">
+
+  <aside class="col-md-10">
+    <% if @carts.any? %>
+      <table class="cart-container">
+        <%= render "cart_header" %>
+        <tbody>
+          <%= render partial: "cart_details", collection: @carts, as: :cart %>
+        </tbody>
+      </table>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    <% else %>
+      <div>
+        <p><%= t ".empty_cart" %></p>
+      </div>
+    <% end %>
+  </aside>
+  <div class="col-md-2 d-flex flex-column">
+    <div class="total-container">
+      <h3 class="text-center title"><%= t ".total_cart" %></h3>
+      <p class="text-center total-price"> (<%= @carts.count %> <%= t ".product_count" %>) <%= total_cart_price @carts %></p>
+      <div class="d-flex justify-content-center mt-4 mb-4">
+        <button class="btn btn-buy"><%= t ".buy" %></button>
+      </div>
+    </div>
+  </div>
+</div>
