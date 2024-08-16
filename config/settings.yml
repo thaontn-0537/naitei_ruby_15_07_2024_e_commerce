@@ -9,8 +9,6 @@ value:
   min_numeric: 0
   rate_min: 1
   rate_max: 5
-gravatar:
-  size: 100
 featured:
   rating_weight: 0.5
   sold_weight: 0.3
@@ -18,4 +16,4 @@ featured:
   min_rating: 3.5
   limit: 10
 list:
-  gravatar_size: 150
+  image_size: 150
