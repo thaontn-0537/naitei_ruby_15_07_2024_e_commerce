@@ -18,6 +18,8 @@ class Product < ApplicationRecord
                            less_than_or_equal_to: Settings.value.rate_max},
             allow_nil: true
 
+  delegate :category_name, to: :category, prefix: true
+
   scope(:featured, lambda do
     select(
       "products.*,

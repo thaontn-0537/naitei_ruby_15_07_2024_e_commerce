@@ -8,7 +8,10 @@
 @import 'cart';
 @import 'products/category_list';
 @import 'products/product_list';
-@import 'products/show_products.scss';
+@import 'products/show_products';
+@import 'product-page';
+@import 'login-modal';
+
 * {
   padding: 0;
   margin: 0;
@@ -34,6 +37,7 @@ a {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

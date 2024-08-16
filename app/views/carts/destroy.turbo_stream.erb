@@ -1,0 +1,8 @@
+<%= turbo_stream.remove "cart_#{@cart.id}" %>
+
+<%= turbo_stream.replace "cart_total_sum" do %>
+  <p class="text-center total-price">
+    (<%= current_user.carts.count %> <%= t ".product_count" %>)
+    <%= total_cart_price(current_user.carts) %>
+  </p>
+<% end %>

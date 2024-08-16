@@ -1,0 +1,27 @@
+<% provide :title, t(".title") %>
+<h1><%= t ".title" %></h1>
+
+<div class="product-container">
+  <div class="product-info">
+    <div class="product-page-image">
+      <%= image_tag resized_image(@product), alt: @product.product_name, class: "product-image" %>
+    </div>
+
+    <div class="product-details">
+      <h2><%= t ".product", name: @product.product_name.upcase %></h2>
+
+      <p><strong><%= t ".category" %>:</strong> <%= @product.category_category_name %></p>
+
+      <p><strong><%= t ".description" %>:</strong> <%= @product.description %></p>
+
+      <p><strong><%= t ".stock" %>:</strong> <%= @product.stock %></p>
+    </div>
+  </div>
+
+  <div class="product-price-row">
+    <p class="product-price"><%= t ".price" %>: <span><%= number_to_currency @product.price, unit: "₫", precision: 0 %></span></p>
+    <div id="cart_button_<%= @product.id %>">
+      <%= render partial: "carts/cart_button", locals: {cart: @cart} %>
+    </div>
+  </div>
+</div>

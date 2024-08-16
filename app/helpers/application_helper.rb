@@ -13,10 +13,10 @@ module ApplicationHelper
   end
 
   def skip_header?
-    action_name == "new"
+    action_name == "new" || controller_name == "sessions"
   end
 
   def skip_container?
-    action_name == "new"
+    action_name == "new" || controller_name == "sessions"
   end
 end
