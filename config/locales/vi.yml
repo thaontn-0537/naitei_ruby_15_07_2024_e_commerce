@@ -65,3 +65,14 @@ vi:
       buy: "MUA"
     empty_cart: "Không có sản phẩm trong giỏ hàng"
     success_signup: "Tạo tài khoản thành công"
+  products:
+    search:
+      title: "Tìm kiếm"
+      search_result_for: "Kết quả tìm kiếm cho: '%{query}'"
+      category: "Danh mục sản phẩm"
+      price: "Giá"
+      price_range: "Khoảng giá"
+      rating_min: "Đánh giá tối thiểu"
+      rating: "Đánh giá"
+      filter: "Lọc"
+      sold: "Đã bán"

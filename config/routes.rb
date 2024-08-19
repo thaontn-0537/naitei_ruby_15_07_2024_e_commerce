@@ -10,5 +10,11 @@ Rails.application.routes.draw do
     get "/signup", to: "users#new"
     post "/signup", to: "users#create"
     resources :users, only: %i(new create show)
+    resources :products do
+      collection do
+        get :search
+        get :filter_by_category
+      end
+    end
   end
 end

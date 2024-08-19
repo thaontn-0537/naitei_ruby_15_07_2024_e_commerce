@@ -36,4 +36,38 @@ class Product < ApplicationRecord
   scope(:by_category_ids, lambda do |category_ids|
     where(category_id: category_ids) if category_ids.present?
   end)
+
+  scope(:search, lambda do
+    select(
+      "products.*,
+          (#{Settings.featured.rating_weight} * COALESCE(products.rating, 0) +
+            #{Settings.featured.sold_weight} * COALESCE(products.sold, 0) +
+            #{Settings.featured.feedback_weight} * COALESCE(
+            COUNT(feedbacks.id), 0)) AS score,
+          COUNT(feedbacks.id) AS feedback_count"
+    )
+    .joins("LEFT JOIN feedbacks ON feedbacks.product_id = products.id")
+    .group("products.id")
+    .having("products.rating IS NOT NULL")
+    .order("score DESC")
+  end)
+
+  def self.ransackable_attributes _auth_object = nil
+    %w(
+      category_id
+      created_at
+      description
+      id
+      price
+      product_name
+      rating
+      sold
+      stock
+      updated_at
+    )
+  end
+
+  def self.ransackable_associations _auth_object = nil
+    %w(carts category feedbacks image_attachment image_blob order_items)
+  end
 end
