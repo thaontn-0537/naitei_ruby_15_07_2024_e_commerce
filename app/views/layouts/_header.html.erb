@@ -9,9 +9,9 @@
           <%= link_to root_path do %>
             <%= image_tag "logo.png", class: "logo-image" %>
           <% end %>
-          <%= form_with url: root_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do %>
-            <%= text_field_tag :query, nil, class: "form-control me-2 custom-search", placeholder: t(".search.placeholder"), aria: { label: t(".search.placeholder") } %>
-            <%= button_tag class: "btn btn-outline-success", type: :submit do %>
+          <%= search_form_for @q, url: search_products_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do |f| %>
+            <%= f.text_field :product_name_cont,value: @query, class: "form-control me-2 custom-search", placeholder: t(".search.placeholder"), aria: { label: t(".search.placeholder") } %>
+            <%= f.submit class: "btn btn-outline-success" do %>
               <i class="bi bi-search"></i>
             <% end %>
           <% end %>
@@ -20,8 +20,8 @@
               <%= t ".language", class: "dropdown" %>
             <% end %>
             <ul id="dropdown-menu" class="dropdown-menu">
-              <li><%= link_to t(".english"), locale: :en %></li>
-              <li><%= link_to t(".vietnamese"), locale: :vi %></li>
+              <li><%= link_to t(".english"), url_for(request.params.merge(locale: "en")) %></li>
+              <li><%= link_to t(".vietnamese"), url_for(request.params.merge(locale: "vi")) %></li>
             </ul>
           </div>
           <% if logged_in? %>
