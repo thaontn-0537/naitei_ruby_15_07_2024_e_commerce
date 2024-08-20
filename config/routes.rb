@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     resources :addresses, only: %i(new create)
     get "orders/order_info"
     post "orders", to: "orders#create"
+    resources :orders, only: %i(show)
   end
 end

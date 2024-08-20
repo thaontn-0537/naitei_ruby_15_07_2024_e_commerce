@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   include OrdersHelper
-  before_action :set_default_data, :set_order_items, only: %i(order_info create)
+  before_action :set_order_items_ids, :set_default_data, :set_order_items,
+                only: %i(order_info create)
 
   def order_info
     @order = Order.new
@@ -18,6 +19,8 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def set_default_data
@@ -27,8 +30,6 @@ class OrdersController < ApplicationController
   end
 
   def set_order_items
-    # order_items_ids = cookies[:cartitemids].split(",").map(&:to_i)
-    @order_items_ids = [1, 2, 3]
     @order_items = @order_items_ids.map do |id|
       cart = Cart.find_by(id:)
       product = Product.find_by id: cart.product_id
@@ -54,8 +55,12 @@ class OrdersController < ApplicationController
   def process_order
     add_order_items
     if @order.save
+      @order.update(paid_at: Time.current)
+      Cart.by_id(@order_items_ids).destroy_all
+      cookies.delete(:cartitemids)
+      cookies.delete(:total)
       flash[:success] = t "orders.order_info.messages.success"
-      redirect_to root_path
+      redirect_to order_path(@order)
     else
       render :order_info, status: :unprocessable_entity
     end

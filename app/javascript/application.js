@@ -6,6 +6,7 @@ import './products/show_products.js'
 import { Turbo } from '@hotwired/turbo-rails'
 import './orders/_receive_info.js'
 import './controllers/toastr.min'
+import './carts/cart_cookie.js'
 //= require toastr
 
 document.addEventListener('DOMContentLoaded', function() {

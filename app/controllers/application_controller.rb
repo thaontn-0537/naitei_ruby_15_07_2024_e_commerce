@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     locale = params[:locale] || I18n.default_locale
     I18n.with_locale(locale, &action)
   end
+
+  def set_order_items_ids
+    @order_items_ids = JSON.parse(cookies[:cartitemids]).map(&:to_i)
+  end
 end
