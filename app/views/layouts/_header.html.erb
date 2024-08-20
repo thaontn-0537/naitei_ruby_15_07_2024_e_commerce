@@ -38,7 +38,7 @@
                   <% end %>
                   <ul id="account-dropdown-menu" class="dropdown-menu">
                     <li><%= link_to t(".profile"), "#" %></li>
-                    <li><%= link_to t(".order_history"), "#" %></li>
+                    <li><%= link_to t(".order_history"), orders_path %></li>
                     <li class="divider"></li>
                     <li><%= link_to t(".log_out"), logout_path, data: {"turbo-method": :delete}%></li>
                   </ul>

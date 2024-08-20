@@ -1,0 +1,20 @@
+<tr>
+  <td>#<%= order.id %></td>
+  <td class="product-image">
+    <% if order.order_items.first.present? %>
+      <%= image_tag(resized_image(order.order_items.first.product), alt: order.order_items.first.product.product_name, class: "product-image") %>
+    <% else %>
+      <span><%= t ".no_image" %></span>
+    <% end %>
+  </td>
+  <td><%= status_name(order.status) %></td>
+  <td class="cart-container">
+    <span class="total-price"><%= format_price order.total %></span>
+  </td>
+  <td><%= order.created_at.strftime(Settings.date_time_format) %></td>
+  <% if order.status.to_sym == :cancelled %>
+    <td><%= order.refuse_reason %></td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

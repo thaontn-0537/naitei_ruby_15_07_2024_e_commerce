@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   include OrdersHelper
   before_action :set_order_items_ids, :set_default_data, :set_order_items,
                 only: %i(order_info create)
+  before_action :set_orders, only: %i(index)
 
   def order_info
     @order = Order.new
@@ -20,6 +21,17 @@ class OrdersController < ApplicationController
   end
 
   def show; end
+
+  def index
+    sort_by = params[:sort_by].present? ? params[:sort_by].to_sym : nil
+
+    case sort_by
+    when :status
+      @orders = @orders.sorted_by_status
+    when :created_at
+      @orders = @orders.sorted_by_created_at
+    end
+  end
 
   private
 
@@ -63,6 +75,16 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order)
     else
       render :order_info, status: :unprocessable_entity
+    end
+  end
+
+  def set_orders
+    if params[:status].present? && Order.statuses.key?(params[:status].to_sym)
+      @orders = current_user.orders.by_status(params[:status].to_sym)
+      @current_status = params[:status].to_sym
+    else
+      @orders = current_user.orders
+      @current_status = :all
     end
   end
 end

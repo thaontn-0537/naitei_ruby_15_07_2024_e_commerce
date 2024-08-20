@@ -1,0 +1,24 @@
+<thead>
+  <tr>
+    <th><%= t ".order_id" %></th>
+    <th><%= t ".product_image" %></th>
+    <% if @current_status.to_sym == :all %>
+      <th>
+        <%= link_to t(".status"), orders_path(sort_by: :status, status: params[:status]) %>
+      </th>
+    <% else %>
+      <th><%= t ".status" %></th>
+    <% end %>
+    <th><%= t ".total" %></th>
+    <% if @current_status.to_sym == :all %>
+      <th>
+        <%= link_to t(".placed_at"), orders_path(sort_by: :created_at, status: params[:status]) %>
+      </th>
+    <% else %>
+      <th><%= t ".placed_at" %></th>
+    <% end %>
+    <% if @orders.any? { |order| order.status.to_sym == :cancelled } %>
+      <th><%= t ".refuse_reason" %></th>
+    <% end %>
+  </tr>
+</thead>

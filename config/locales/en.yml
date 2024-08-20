@@ -113,6 +113,25 @@ en:
       messages:
         success: "Order placed successfully!"
         failed: "Order information is invalid. Please check again."
+    statuses:
+      pending: "Pending"
+      preparing: "Preparing"
+      in_transit: "In Transit"
+      delivered: "Delivered"
+      cancelled: "Cancelled"
+    index:
+      title: "Order History"
+    orders_header:
+      order_id: "Order ID"
+      product_image: "Product Image"
+      status: "Status"
+      total: "Total"
+      placed_at: "Placed at"
+      refuse_reason: "Refuse Reason"
+    status_list:
+      all: "All orders (%{count})"
+    orders_list:
+      no_image: "No image available"
   addresses:
     messages:
       success: "Add address successfully!"
@@ -121,3 +140,4 @@ en:
       place_label: "Address"
       default_label: "Default"
       add_button: "Add Address"
+
