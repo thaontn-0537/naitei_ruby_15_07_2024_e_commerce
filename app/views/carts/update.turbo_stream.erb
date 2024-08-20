@@ -1,24 +1,24 @@
-<% if current_user %>
-  <%= turbo_stream.replace "cart_button_#{@cart.product_id}" do %>
-    <div id="cart_button_<%= @cart.product_id %>">
-      <%= render partial: "carts/cart_button", locals: {cart: @cart} %>
-    </div>
-  <% end %>
+<%= turbo_stream.replace "cart_button_#{@cart.product_id}" do %>
+  <div id="cart_button_<%= @cart.product_id %>">
+    <%= render partial: "carts/cart_button", locals: {cart: @cart, product_id: @cart.product_id} %>
+  </div>
+<% end %>
 
+<% if current_user %>
   <% if @cart.quantity > 0 %>
     <%= turbo_stream.replace "cart_#{@cart.id}" do %>
-      <%= render partial: "carts/cart_details", locals: {cart: @cart} %>
+      <%= render partial: "carts/cart_details", locals: {cart: @cart, product_id: @cart.product_id} %>
     <% end %>
   <% else %>
     <%= turbo_stream.remove "cart_#{@cart.id}" %>
   <% end %>
+<% end %>
 
-  <%= turbo_stream.replace "cart_total_sum" do %>
-    <div id="cart_total_sum">
-      <p class="text-center total-price">
-        (<%= current_user.carts.count %> <%= t ".product_count" %>)
-        <%= total_cart_price current_user.carts %>
-      </p>
-    </div>
-  <% end %>
+<%= turbo_stream.replace "cart_total_sum" do %>
+  <div id="cart_total_sum">
+    <p class="text-center total-price">
+      (<%= current_user.carts.count %> <%= t ".product_count" %>)
+      <%= total_cart_price current_user.carts %>
+    </p>
+  </div>
 <% end %>

@@ -21,7 +21,8 @@
   <div class="product-price-row">
     <p class="product-price"><%= t ".price" %>: <span><%= number_to_currency @product.price, unit: "₫", precision: 0 %></span></p>
     <div id="cart_button_<%= @product.id %>">
-      <%= render partial: "carts/cart_button", locals: {cart: @cart} %>
+      <%= render partial: "carts/cart_button",
+                 locals: {cart: @cart, product_id: @product.id} %>
     </div>
   </div>
 </div>
