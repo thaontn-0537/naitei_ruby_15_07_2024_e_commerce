@@ -32,6 +32,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def set_orders
+    @orders = fetch_orders
+    @current_status = determine_current_status
+    @orders_count = @orders.recently_updated
+  end
+
   def index
     sort_by = params[:sort_by].present? ? params[:sort_by].to_sym : nil
 
@@ -41,6 +47,7 @@ class OrdersController < ApplicationController
     when :created_at
       @orders = @orders.sorted_by_created_at
     end
+    @pagy, @orders = pagy(@orders, limit: Settings.page_10)
   end
 
   private
@@ -88,13 +95,23 @@ class OrdersController < ApplicationController
     end
   end
 
-  def set_orders
-    if params[:status].present? && Order.statuses.key?(params[:status].to_sym)
-      @orders = current_user.orders.by_status(params[:status].to_sym)
-      @current_status = params[:status].to_sym
+  def fetch_orders
+    if status_valid?
+      current_user.orders.by_status(params[:status].to_sym)
     else
-      @orders = current_user.orders
-      @current_status = :all
+      current_user.orders
+    end
+  end
+
+  def status_valid?
+    params[:status].present? && Order.statuses.key?(params[:status].to_sym)
+  end
+
+  def determine_current_status
+    if status_valid?
+      params[:status].to_sym
+    else
+      :all
     end
   end
 end

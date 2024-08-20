@@ -132,7 +132,9 @@ en:
       status: "Status"
       total: "Total"
       placed_at: "Placed at"
+      updated_at: "Updated At"
       refuse_reason: "Refuse Reason"
+      received_by: "Received By"
     status_list:
       all: "All orders (%{count})"
     orders_list:
@@ -164,3 +166,20 @@ en:
         sold: "Sold"
         edit: "Edit"
         delete: "Delete"
+    orders:
+      index:
+        title: "ALL ORDERS"
+      orders_list:
+        no_image: "No image available"
+        update_to_preparing: "Prepare Order"
+        confirm_update_to_preparing: "Are you sure you want to update this order to Preparing?"
+        update_failed: "Update Failed"
+        update_to_in_transit: "Transit Order"
+        confirm_update_to_in_transit: "Are you sure you want to update this order to In Transit?"
+        update_to_delivered: "Deliver Order"
+        confirm_update_to_delivered: "Are you sure you want to update this order to Delivered?"
+        cancel: "Cancel Order"
+        confirm_cancel_order: "Are you sure you want to cancel this order?"
+        refuse_reason: "Refuse Reason"
+        update_to_cancelled: "Cancelled Order"
+      not_found_product: "Not Found Order"

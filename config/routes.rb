@@ -25,5 +25,12 @@ Rails.application.routes.draw do
     post "orders", to: "orders#create"
     resources :orders, only: %i(show index)
     get "admin_show", to: "products#admin_show"
+    namespace :admin do
+      resources :orders, only: %i(index) do
+        member do
+          patch :update_status
+        end
+      end
+    end
   end
 end

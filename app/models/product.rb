@@ -72,4 +72,14 @@ class Product < ApplicationRecord
   def self.ransackable_associations _auth_object = nil
     %w(carts category feedbacks image_attachment image_blob order_items)
   end
+
+  def increment_stock amount
+    self.stock += amount
+    save!
+  end
+
+  def decrement_stock amount
+    self.stock -= amount
+    save!
+  end
 end

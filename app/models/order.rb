@@ -20,7 +20,15 @@ class Order < ApplicationRecord
   validates :status, presence: true
   validates :refuse_reason, presence: true, if: ->{status_cancelled?}
   validates :payment_method, presence: true
-  scope :by_status, ->(status){where(status: statuses[status])}
-  scope :sorted_by_status, ->{order(status: :asc)}
-  scope :sorted_by_created_at, ->{order(created_at: :asc)}
+  scope :by_status, lambda {|status|
+    if statuses.keys.include?(status.to_s)
+      where(status: statuses[status])
+    else
+      all
+    end
+  }
+
+  scope :sorted_by, lambda {|field, direction = :asc|
+    order(field => direction)
+  }
 end

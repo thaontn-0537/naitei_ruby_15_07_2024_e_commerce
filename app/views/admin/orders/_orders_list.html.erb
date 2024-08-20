@@ -1,0 +1,46 @@
+<tr>
+  <td>#<%= order.id %></td>
+  <td class="product-image">
+    <% if order.order_items.first.present? %>
+      <%= image_tag(resized_image(order.order_items.first.product), alt: order.order_items.first.product.product_name, class: "product-image") %>
+    <% else %>
+      <span><%= t ".no_image" %></span>
+    <% end %>
+  </td>
+  <td><%= status_name(order.status) %></td>
+  <td class="cart-container">
+    <span class="total-price"><%= format_price order.total %></span>
+  </td>
+  <td>
+    <div><%= order.created_at.strftime(Settings.time_format) %></div>
+    <div><%= order.created_at.strftime(Settings.date_format) %></div>
+  </td>
+  <td>
+    <div><%= order.updated_at.strftime(Settings.time_format) %></div>
+    <div><%= order.updated_at.strftime(Settings.date_format) %></div>
+  </td>
+  <% if order.status.to_sym == :cancelled %>
+    <td><%= order.refuse_reason %></td>
+  <% elsif order.status.to_sym == :delivered %>
+    <td><%= order.user.user_name %></td>
+  <% else %>
+    <td>
+      <% case order.status.to_sym %>
+      <% when :pending %>
+        <%= button_to t(".update_to_preparing"), update_status_admin_order_path(order, status: :preparing), method: :patch, data: {turbo_confirm: t(".confirm_update_to_preparing")}, class: "btn btn-primary" %>
+        <hr class="my-3">
+        <%= form_with url: update_status_admin_order_path(order, status: :cancelled), method: :patch, local: true do |form| %>
+          <div class="form-group">
+            <%= form.label :refuse_reason, t(".refuse_reason") %>
+            <%= form.text_area :refuse_reason, class: "form-control", required: true %>
+          </div>
+          <%= form.submit t(".cancel"), class: "btn btn-danger mt-2", data: {turbo_confirm: t(".confirm_cancel_order")} %>
+        <% end %>
+      <% when :preparing %>
+        <%= button_to t(".update_to_in_transit"), update_status_admin_order_path(order, status: :in_transit), method: :patch, data: {turbo_confirm: t(".confirm_update_to_in_transit")}, class: "btn btn-primary" %>
+      <% when :in_transit %>
+        <%= button_to t(".update_to_delivered"), update_status_admin_order_path(order, status: :delivered), method: :patch, data: {turbo_confirm: t(".confirm_update_to_delivered")}, class: "btn btn-primary" %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>
