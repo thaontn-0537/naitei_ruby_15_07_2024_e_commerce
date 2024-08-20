@@ -11,11 +11,11 @@ module OrdersHelper
     end
   end
 
-  def status_name status
-    I18n.t("orders.statuses.#{status}")
-  end
-
   def format_price price
     number_with_delimiter price, unit: "đ"
+  end
+
+  def status_name status
+    t "orders.statuses.#{status}"
   end
 end

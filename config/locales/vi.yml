@@ -99,20 +99,31 @@ vi:
     order_info:
       title: "Thông tin đơn hàng"
       payment_title: "Chọn phương thức thanh toán"
+      your_payment_method: "Phương thức thanh toán: "
       summary:
         title: "Tổng quan đặt hàng"
         empty_cart: "Giỏ hàng của bạn hiện đang trống."
         total: "Tổng cộng"
         submit_button: "ĐẶT HÀNG"
       receive_info:
-        user_name: "Họ và tên"
-        place: "Địa chỉ"
-        blank: "Chọn địa chỉ"
-        user_phone: "Số điện thoại"
-        button: "Thêm địa chỉ"
+        user_name: "Họ và tên: "
+        place: "Địa chỉ: "
+        blank: "Chọn địa chỉ: "
+        user_phone: "Số điện thoại: "
+        button: "Thêm địa chỉ: "
+        paid_at: "Thanh toán lúc: "
+        status: "Trạng thái: "
+        refuse_reason: "Lý do từ chối: "
       messages:
         success: "Đặt hàng thành công!"
         failed: "Thông tin đặt hàng không hợp lệ. Vui lòng kiểm tra lại."
+    show:
+      title: "Đơn hàng"
+    order_header:
+      product: "Sản phẩm"
+      price: "Đơn giá"
+      quantity: "Số lượng"
+      total: "Số tiền"
     statuses:
       pending: "Chờ xử lý"
       preparing: "Đang chuẩn bị"

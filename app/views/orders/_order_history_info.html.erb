@@ -1,0 +1,30 @@
+<%= form_with(model: @order, local: true) do |f| %>
+  <div class="receive_info">
+    <div class="form-group">
+      <%= f.label :user_name, t("orders.order_info.receive_info.user_name") %>
+      <%= @order.user_name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :place, t("orders.order_info.receive_info.place") %>
+      <span><%= @order.place %></span>
+    </div>
+    <div class="form-group">
+      <%= f.label :user_phone, t("orders.order_info.receive_info.user_phone") %>
+      <span><%= @order.user_phone %></span>
+    </div>
+    <div class="form-group">
+      <%= f.label :paid_at, t("orders.order_info.receive_info.paid_at") %>
+      <span><%= @order.paid_at %></span>
+    </div>
+    <div class="form-group">
+      <%= f.label :status, t("orders.order_info.receive_info.status") %>
+      <span><%= status_name @order.status %></span>
+    </div>
+    <% if @order.status.to_sym == :cancelled %>
+      <div class="form-group">
+        <%= f.label :refuse_reason, t("orders.order_info.receive_info.refuse_reason") %>
+        <span><%= @order.refuse_reason %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
