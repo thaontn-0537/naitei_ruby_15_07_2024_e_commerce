@@ -49,8 +49,14 @@ vi:
     access_without_login:
       or: "hoặc"
       home_without_login: "Truy cập trang web không cần đăng nhập!"
+    login_modal:
+      login_now?: "Bạn cần đăng nhập để dùng tính năng này. Bạn có muôn đăng nhập luôn không?"
+      maybe_later: "Để sau đi"
+      login_now: "Đăng nhập ngay"
   flash:
     invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."
+    success_signup: "Tạo tài khoản thành công"
+    not_found_product: "Không tìm thấy sản phẩm!"
   carts:
     cart_header:
       product: "Sản phẩm"
@@ -58,6 +64,8 @@ vi:
       quantity: "Số lượng"
       total: "Số tiền"
       action: "Hành động"
+    cart_button:
+      add_to_cart: "Thêm vào giỏ hàng"
     index:
       title: "Giỏ hàng"
       total_cart: "TỔNG GIỎ HÀNG"
@@ -65,6 +73,9 @@ vi:
       buy: "MUA"
     empty_cart: "Không có sản phẩm trong giỏ hàng"
     success_signup: "Tạo tài khoản thành công"
+    update:
+      add_to_cart: "Thêm vào giỏ hàng"
+      product_count: "sản phẩm"
   products:
     search:
       title: "Tìm kiếm"
@@ -76,3 +87,11 @@ vi:
       rating: "Đánh giá"
       filter: "Lọc"
       sold: "Đã bán"
+    show:
+      title: "Sản phẩm"
+      product: "Sản phẩm: %{name}"
+      category: "Danh mục"
+      description: "Mô tả"
+      stock: "Số lượng trong kho"
+      price: "Giá"
+      add_to_cart: "Thêm vào giỏ hàng"

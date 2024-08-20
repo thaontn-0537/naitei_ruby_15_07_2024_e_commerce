@@ -14,6 +14,7 @@
     <% unless skip_header? %>
       <%= render "layouts/header" %>
     <% end %>
+    <%= render "shared/login_modal" %>
     <% unless skip_container? %>
       <div class="container">
         <%= yield %>

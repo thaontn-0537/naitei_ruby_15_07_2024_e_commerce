@@ -20,7 +20,11 @@
   <div class="col-md-2 d-flex flex-column">
     <div class="total-container">
       <h3 class="text-center title"><%= t ".total_cart" %></h3>
-      <p class="text-center total-price"> (<%= @carts.count %> <%= t ".product_count" %>) <%= total_cart_price @carts %></p>
+      <div id="cart_total_sum">
+        <p class="text-center total-price">
+          (<%= @carts.count %> <%= t ".product_count" %>) <%= total_cart_price @carts %>
+        </p>
+      </div>
       <div class="d-flex justify-content-center mt-4 mb-4">
         <button class="btn btn-buy"><%= t ".buy" %></button>
       </div>

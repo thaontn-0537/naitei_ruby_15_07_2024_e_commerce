@@ -49,8 +49,14 @@ en:
     access_without_login:
       or: "or"
       home_without_login: "Use our page without signing in!"
+    login_modal:
+      login_now?: "You need to login to use this feature. Login now?"
+      maybe_later: "Maybe later"
+      login_now: "Login now"
   flash:
     invalid_email_password_combination: "Invalid email and password combination. Please try again."
+    success_signup: "Created account successfully"
+    not_found_product: "Product not found!"
   carts:
     cart_header:
       product: "Product"
@@ -58,6 +64,8 @@ en:
       quantity: "Quantity"
       total: "Total"
       action: "Action"
+    cart_button:
+      add_to_cart: "Add to cart"
     index:
       title: "Cart"
       total_cart: "TOTAL CART"
@@ -65,6 +73,9 @@ en:
       buy: "BUY"
     empty_cart: "No product in cart"
     success_signup: "Created account successfully"
+    update:
+      add_to_cart: "Add to cart"
+      product_count: "products"
   products:
     search:
       title: "Search"
@@ -76,3 +87,11 @@ en:
       rating: "Rating"
       filter: "Filter"
       sold: "Sold"
+    show:
+      title: "Product"
+      product: "Product: %{name}"
+      category: "Category"
+      description: "Description"
+      stock: "Stock"
+      price: "Price"
+      add_to_cart: "Add to cart"

@@ -1,25 +1,29 @@
-<tr>
+<tr id="cart_<%= cart.id %>">
   <td>
     <input type="checkbox" class="product-checkbox">
   </td>
   <td class="product-image">
-    <%= image_tag(cart.product.image, alt: cart.product.product_name, class: "product-image") %>
+    <%= link_to product_path(cart.product) do %>
+      <%= image_tag(resized_image(cart.product), alt: cart.product.product_name, class: "product-image") %>
+    <% end %>
   </td>
-  <td class="product-name"><%= cart.product.product_name %></td>
+  <td class="product-name">
+    <%= link_to product_path(cart.product) do %>
+      <%= cart.product.product_name %>
+    <% end %>
+  </td>
   <td class="product-price">
     <span class="value"><%= format_price cart.product.price %></span>
   </td>
-  <td class="quantity-container">
-    <div class="quantity-btn" >-</div>
-    <input type="text" class="quantity-input" value="<%= cart.quantity %>">
-    <div class="quantity-btn" >+</div>
+  <td class="quantity-container" id="cart_page_<%= cart.product_id %>">
+    <%= button_to "-", cart_path(cart, action_type: "decrement", product_id: cart.product_id), method: :patch, class: "quantity-btn", data: { turbo: "true" } %>
+    <input type="text" class="quantity-input" value="<%= cart.quantity %>" readonly>
+    <%= button_to "+", cart_path(cart, action_type: "increment", product_id: cart.product_id), method: :patch, class: "quantity-btn", data: { turbo: "true" } %>
   </td>
   <td class="total-price">
-    <span class="value"><%= format_price(calculate_product_price(cart.product, cart.quantity)) %></span>
+    <span id="total_price_<%= cart.product_id %>" class="value"><%= format_price(calculate_product_price(cart.product, cart.quantity)) %></span>
   </td>
   <td class="actions">
-    <div class="delete-button">
-      <div><%= image_tag "delete.png" %></div>
-    </div>
+    <%= button_to image_tag("delete.png"), cart_path(cart, product_id: cart.product_id), method: :delete, class: "delete-button", data: { turbo: "true" } %>
   </td>
 </tr>
