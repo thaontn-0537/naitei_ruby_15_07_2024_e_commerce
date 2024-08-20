@@ -1,6 +1,7 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
 @import 'bootstrap-min';
+@import 'toastr';
 @import 'color';
 @import 'defaults';
 @import 'header';
@@ -11,7 +12,9 @@
 @import 'products/show_products';
 @import 'product-page';
 @import 'login-modal';
-
+@import 'orders/receive_info';
+@import 'orders/order_info';
+@import 'addresses/address_form';
 * {
   padding: 0;
   margin: 0;

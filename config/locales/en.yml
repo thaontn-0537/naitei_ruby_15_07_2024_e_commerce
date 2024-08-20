@@ -95,3 +95,29 @@ en:
       stock: "Stock"
       price: "Price"
       add_to_cart: "Add to cart"
+  orders:
+    order_info:
+      title: "Order Information"
+      payment_title: "Choose Payment Method"
+      summary:
+        title: "Order Summary"
+        empty_cart: "Your cart is currently empty."
+        total_label: "Total"
+        submit_button: "PLACE ORDER"
+      receive_info:
+        user_name: "User name"
+        place: "Address"
+        blank: "Select Address"
+        user_phone: "Phone"
+        button: "Add Address"
+      messages:
+        success: "Order placed successfully!"
+        failed: "Order information is invalid. Please check again."
+  addresses:
+    messages:
+      success: "Add address successfully!"
+      failed: "Failed!"
+    add_address:
+      place_label: "Address"
+      default_label: "Default"
+      add_button: "Add Address"

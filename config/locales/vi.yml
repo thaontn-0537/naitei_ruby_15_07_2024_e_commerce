@@ -95,3 +95,29 @@ vi:
       stock: "Số lượng trong kho"
       price: "Giá"
       add_to_cart: "Thêm vào giỏ hàng"
+  orders:
+    order_info:
+      title: "Thông tin đơn hàng"
+      payment_title: "Chọn phương thức thanh toán"
+      summary:
+        title: "Tổng quan đặt hàng"
+        empty_cart: "Giỏ hàng của bạn hiện đang trống."
+        total: "Tổng cộng"
+        submit_button: "ĐẶT HÀNG"
+      receive_info:
+        user_name: "Họ và tên"
+        place: "Địa chỉ"
+        blank: "Chọn địa chỉ"
+        user_phone: "Số điện thoại"
+        button: "Thêm địa chỉ"
+      messages:
+        success: "Đặt hàng thành công!"
+        failed: "Thông tin đặt hàng không hợp lệ. Vui lòng kiểm tra lại."
+  addresses:
+    messages:
+      success: "Thêm địa chỉ thành công!"
+      failed: "Thất bại!"
+    add_address:
+      place_label: "Địa chỉ"
+      default_label: "Mặc định"
+      add_button: "Thêm địa chỉ"
