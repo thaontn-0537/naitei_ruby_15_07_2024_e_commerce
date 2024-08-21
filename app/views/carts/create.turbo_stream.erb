@@ -1,7 +1,7 @@
 <% if current_user %>
   <%= turbo_stream.replace "cart_button_#{@cart.product_id}" do %>
     <div id="cart_button_<%= @cart.product_id %>">
-      <%= render partial: "carts/cart_button", locals: {cart: @cart} %>
+      <%= render partial: "carts/cart_button", locals: {cart: @cart, product_id: @product_id} %>
     </div>
   <% end %>
 <% end %>

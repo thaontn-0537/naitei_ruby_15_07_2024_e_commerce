@@ -25,10 +25,13 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by id: params[:id]
-    @cart = current_user&.carts&.find_by product_id: @product.id
-    return if @product
-
-    flash[:warning] = t "flash.not_found_product"
-    redirect_to root_path
+    if @product
+      if current_user
+        @cart = current_user&.carts&.find_by product_id: @product.id
+      end
+    else
+      flash[:warning] = t "flash.not_found_product"
+      redirect_to root_path
+    end
   end
 end

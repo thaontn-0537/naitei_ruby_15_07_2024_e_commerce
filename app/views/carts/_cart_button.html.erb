@@ -1,9 +1,9 @@
-<% if cart.quantity > 0 %>
+<% if cart && cart.quantity > 0 %>
   <div class="product-page-quantity-container">
     <%= button_to "-", cart_path(cart, action_type: "decrement", product_id: cart.product_id), method: :patch, class: "product-page-quantity-btn-minus product-page-quantity-btn", data: {turbo: "true"} %>
     <input type="text" class="product-page-quantity-input" value="<%= cart.quantity %>" readonly>
     <%= button_to "+", cart_path(cart, action_type: "increment", product_id: cart.product_id), method: :patch, class: "product-page-quantity-btn-plus product-page-quantity-btn", data: {turbo: "true"} %>
   </div>
 <% else %>
-  <%= button_to t(".add_to_cart"), carts_path(product_id: cart.product_id), method: :post, class: "btn btn-primary", data: {turbo: "true"} %>
+  <%= button_to t(".add_to_cart"), carts_path(product_id: product_id), method: :post, class: "btn btn-primary", data: {turbo: "true"} %>
 <% end %>
