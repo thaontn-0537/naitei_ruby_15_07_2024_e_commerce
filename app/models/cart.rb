@@ -4,4 +4,6 @@ class Cart < ApplicationRecord
 
   validates :quantity, presence: true,
     numericality: {greater_than: Settings.value.min_numeric}
+
+  scope :by_id, ->(id){where(id:)}
 end

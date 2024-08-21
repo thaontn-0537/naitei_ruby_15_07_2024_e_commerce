@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :find_cart_item, only: %i(update destroy)
+  before_action :set_order_items_ids, only: :index
   def index
     @pagy, @carts = pagy(
       current_user.carts.includes(:product),
