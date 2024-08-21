@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     get "orders/order_info"
     post "orders", to: "orders#create"
     resources :orders, only: %i(show index)
+    get "admin_show", to: "products#admin_show"
   end
 end

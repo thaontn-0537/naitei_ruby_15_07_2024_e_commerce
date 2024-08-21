@@ -3,6 +3,7 @@ class Category < ApplicationRecord
   has_many :children, class_name: Category.name,
                       foreign_key: :parent_id,
                       dependent: :destroy
+  has_many :products, dependent: :nullify
   has_one_attached :image
   before_save :update_parent_path
 

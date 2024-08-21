@@ -42,7 +42,7 @@
           <p><strong><%= t "orders.order_info.summary.total" %></strong> 
           <span class="total-price"><%= format_currency total_amount %></span></p>
         </div>
-        <%= link_to t("orders.order_info.summary.submit_button"), orders_path, class: "btn-order", data: {disable_with: false, turbolinks: false} %>
+        <%= form.submit t("orders.order_info.summary.submit_button"), class: "btn-order" %>
       </div>
     </div>
 
