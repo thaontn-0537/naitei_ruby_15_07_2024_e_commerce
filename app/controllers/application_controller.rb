@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_order_items_ids
-    @order_items_ids = JSON.parse(cookies[:cartitemids]).map(&:to_i)
+    @order_items_ids = if cookies[:cartitemids].present?
+                         JSON.parse(cookies[:cartitemids]).map(&:to_i)
+                       else
+                         []
+                       end
   end
 end

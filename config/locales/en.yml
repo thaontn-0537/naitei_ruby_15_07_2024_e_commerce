@@ -99,17 +99,21 @@ en:
     order_info:
       title: "Order Information"
       payment_title: "Choose Payment Method"
+      your_payment_method: "Your payment method: "
       summary:
         title: "Order Summary"
         empty_cart: "Your cart is currently empty."
         total_label: "Total"
         submit_button: "PLACE ORDER"
       receive_info:
-        user_name: "User name"
-        place: "Address"
-        blank: "Select Address"
-        user_phone: "Phone"
-        button: "Add Address"
+        user_name: "User name: "
+        place: "Address: "
+        blank: "Select Address: "
+        user_phone: "Phone: "
+        button: "Add Address: "
+        paid_at: "Paid at: "
+        status: "Status: "
+        refuse_reason: "Refused reaon: "
       messages:
         success: "Order placed successfully!"
         failed: "Order information is invalid. Please check again."
@@ -132,6 +136,13 @@ en:
       all: "All orders (%{count})"
     orders_list:
       no_image: "No image available"
+    show:
+      title: "Orders"
+    order_header:
+      product: "Product"
+      price: "Price"
+      quantity: "Quantity"
+      total: "Total"
   addresses:
     messages:
       success: "Add address successfully!"
@@ -140,4 +151,3 @@ en:
       place_label: "Address"
       default_label: "Default"
       add_button: "Add Address"
-

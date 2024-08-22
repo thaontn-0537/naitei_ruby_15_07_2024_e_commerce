@@ -3,6 +3,18 @@ class OrdersController < ApplicationController
   before_action :set_order_items_ids, :set_default_data, :set_order_items,
                 only: %i(order_info create)
   before_action :set_orders, only: %i(index)
+  def show
+    @order = Order.find params[:id]
+    if @order && @order.user_id == current_user.id
+      @pagy, @order_items = pagy(
+        @order.order_items,
+        items: Settings.page_10
+      )
+    else
+      flash[:warning] = t "flash.order_not_found"
+      redirect_to root_path
+    end
+  end
 
   def order_info
     @order = Order.new
@@ -19,8 +31,6 @@ class OrdersController < ApplicationController
       render :order_info, status: :unprocessable_entity
     end
   end
-
-  def show; end
 
   def index
     sort_by = params[:sort_by].present? ? params[:sort_by].to_sym : nil
