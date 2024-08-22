@@ -10,4 +10,12 @@ module OrdersHelper
       total_amount + calculate_item_total(cart)
     end
   end
+
+  def status_name status
+    I18n.t("orders.statuses.#{status}")
+  end
+
+  def format_price price
+    number_with_delimiter price, unit: "đ"
+  end
 end

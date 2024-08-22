@@ -113,6 +113,25 @@ vi:
       messages:
         success: "Đặt hàng thành công!"
         failed: "Thông tin đặt hàng không hợp lệ. Vui lòng kiểm tra lại."
+    statuses:
+      pending: "Chờ xử lý"
+      preparing: "Đang chuẩn bị"
+      in_transit: "Đang vận chuyển"
+      delivered: "Đã giao hàng"
+      cancelled: "Đã hủy"
+    index:
+      title: "Lịch sử đơn hàng"
+    orders_header:
+      order_id: "Mã đơn hàng"
+      product_image: "Ảnh sản phẩm"
+      status: "Trạng thái"
+      total: "Tổng tiền"
+      placed_at: "Thời gian đặt hàng"
+      refuse_reason: "Lý do từ chối"
+    status_list:
+      all: "Tất cả đơn hàng (%{count})"
+    orders_list:
+      no_image: "Không có ảnh"
   addresses:
     messages:
       success: "Thêm địa chỉ thành công!"
