@@ -1,0 +1,31 @@
+.crud_product {
+  margin: 0 10%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.crud-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: $dark-blue;
+}
+
+.image-name{
+  display: flex;
+  gap: 20px;
+}
+.price-stock {
+  display: flex;
+  gap: 30px;
+}
+
+.form-actions {
+  gap: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+}

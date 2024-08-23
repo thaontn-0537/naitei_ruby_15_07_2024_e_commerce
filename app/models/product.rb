@@ -1,18 +1,23 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
+  PRODUCT_PARAMS = %i(category_id product_name image description price
+                      stock).freeze
   belongs_to :category
   has_many :carts, dependent: :destroy
-  has_many :order_items, dependent: :nullify
+  has_many :order_items # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :feedbacks, dependent: :destroy
   has_one_attached :image
 
   validates :category_id, presence: true
-  validates :product_name, presence: true
+  validates :product_name, presence: true,
+            length: {maximum: Settings.value.max_name}
+  validates :description,
+            length: {maximum: Settings.value.max_name}
   validates :price, presence: true,
-    numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
-  validates :stock, presence: true,
-    numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
-  validates :sold, presence: true,
-    numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
+            numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
+  validates :stock,
+            allow_nil: true,
+            numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
   validates :rating,
             numericality: {greater_than_or_equal_to: Settings.value.min_numeric,
                            less_than_or_equal_to: Settings.value.rate_max},

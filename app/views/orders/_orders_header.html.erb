@@ -3,22 +3,18 @@
     <th><%= t ".order_id" %></th>
     <th><%= t ".product_image" %></th>
     <% if @current_status.to_sym == :all %>
-      <th>
-        <%= link_to t(".status"), orders_path_for_current_role(:status) %>
-      </th>
+      <th><%= sortable(:status, t(".status")) %></th>
     <% else %>
       <th><%= t ".status" %></th>
     <% end %>
     <th><%= t ".total" %></th>
-    <th>
-      <%= link_to t(".placed_at"), orders_sort_path(:created_at, params[:status]) %>
-    </th>
-    <th><%= t ".updated_at" %></th>
+    <th><%= sortable(:created_at, t(".placed_at")) %></th>
+    <th><%= sortable(:updated_at, t(".updated_at")) %></th>
     <th>
       <% if @orders.any? {|order| order.status.to_sym == :cancelled} %>
         <%= t ".refuse_reason" %>
       <% elsif @orders.any? {|order| order.status.to_sym == :delivered} %>
-        <%= t ".received_by" %>
+        <%= t ".action" %>
       <% elsif display_action_column?(@orders, current_user) %>
         <%= t ".action" %>
       <% end %>

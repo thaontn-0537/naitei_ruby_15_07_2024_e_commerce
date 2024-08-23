@@ -1,5 +1,5 @@
 <div class="admin-product-show">
-  <%= search_form_for @q, url: admin_show_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do |f| %>
+  <%= search_form_for @q, url: admin_products_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do |f| %>
     <%= f.text_field :product_name_cont,value: @query, class: "form-control me-2 custom-search", placeholder: t("layouts.header.search.placeholder"), aria: { label: t("layouts.header.search.placeholder") } %>
     <%= f.submit t("layouts.header.search.search_button"), class: "btn btn-outline-success" do %>
       <i class="bi bi-search"></i>
@@ -8,10 +8,10 @@
 
   <div class="filter_show">
     <div class="col-md-3 filter-frame">
-      <%= search_form_for @q, url: admin_show_path, method: :get do |f| %>
+      <%= search_form_for @q, url: admin_products_path, method: :get do |f| %>
         <div class="form-group">
           <%= f.label :category_id_eq, t("products.search.category") %>
-          <%= f.collection_select :category_id_eq, @categories, :id, :category_name, {include_blank: false}, {class: "form-control"} %>
+          <%= f.collection_select :category_id_eq, @categories, :id, :category_name, {include_blank: true}, {class: "form-control"} %>
         </div>
         <%= f.hidden_field :product_name_cont, value: @query %>
 
@@ -44,7 +44,7 @@
           <div class="sort-by">
             <%= sort_link @q, :sold, t("products.search.sold") %>
           </div>
-          <button type="button" class="add-button"><%= t "admin.products.add_product.add_button" %></button>
+          <%= link_to t("admin.products.add_product.add_button"), new_admin_product_path, class: "add-button" %>
       </div>
       <div>
         <div class="title-line">
@@ -56,7 +56,11 @@
           <p><%= t "admin.products.show_title.edit" %></p>
           <p><%= t "admin.products.show_title.delete" %></p>
         </div>
-        <%= render partial: "products/admin_product_list", collection: @products_search, as: :product %>
+        <% if @products_search.present? %>
+          <%= render partial: "admin/products/admin_product_list", collection: @products_search, as: :product %>
+        <% elsif @products_filtered.present? %>
+          <%= render partial: "admin/products/admin_product_list", collection: @products_filtered, as: :product %>
+        <% end %>
         <%== pagy_bootstrap_nav @pagy %>
       </div>
     </div>

@@ -20,6 +20,28 @@ vi:
         phone: "Số điện thoại"
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
+    errors:
+      models:
+        product:
+          attributes:
+            category_id:
+              blank: "không được để trống"
+            product_name:
+              blank: "không được để trống"
+              too_long: "quá dài (tối đa %{count} ký tự)"
+            price:
+              blank: "không được để trống"
+              greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
+            stock:
+              greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
+            rating:
+              greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
+              less_than_or_equal_to: "phải nhỏ hơn hoặc bằng %{count}"
+      messages:
+        blank: "không được để trống"
+        greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
+        less_than_or_equal_to: "phải nhỏ hơn hoặc bằng %{count}"
+        too_long: "quá dài (tối đa %{count} ký tự)"
   static_pages:
     index:
       title: "Trang chủ"
@@ -65,6 +87,7 @@ vi:
       maybe_later: "Để sau đi"
       login_now: "Đăng nhập ngay"
   flash:
+    success: "Đăng nhập thành công"
     invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."
     success_signup: "Tạo tài khoản thành công"
     not_found_product: "Không tìm thấy sản phẩm!"
@@ -125,7 +148,7 @@ vi:
         place: "Địa chỉ: "
         blank: "Chọn địa chỉ: "
         user_phone: "Số điện thoại: "
-        button: "Thêm địa chỉ: "
+        button: "Thêm địa chỉ "
         paid_at: "Thanh toán lúc: "
         status: "Trạng thái: "
         refuse_reason: "Lý do từ chối: "
@@ -134,6 +157,8 @@ vi:
         failed: "Thông tin đặt hàng không hợp lệ. Vui lòng kiểm tra lại."
     show:
       title: "Đơn hàng"
+      flash:
+        order_not_found: "Không tìm thấy đơn hàng!"
     order_header:
       product: "Sản phẩm"
       price: "Đơn giá"
@@ -190,6 +215,34 @@ vi:
         sold: "Đã bán"
         edit: "Sửa"
         delete: "Xóa"
+      form:
+        category: "Danh mục"
+        select_category: "Chọn danh mục"
+        product_name: "Tên sản phẩm"
+        description: "Mô tả"
+        price: "Giá"
+        stock: "Tồn kho"
+        sold: "Đã bán"
+        rating: "Đánh giá"
+        submit: "Lưu sản phẩm"
+        cancel: "Hủy"
+      new:
+        title: "Thêm sản phẩm"
+      create:
+        messages:
+          success: "Them san pham thanh cong"
+          error: "Them san pham that bai"
+      edit:
+        title: "Cập nhật sản phẩm"
+      update:
+        messages:
+          success: "Cap nhat san pham thanh cong"
+          error: "Cap nhat san pham that bai"
+      destroy:
+        messages:
+          success: "Xoa san pham thanh cong"
+          error: "Xoa san pham that bai"
+          confirm_delete: "Bạn có chắc chắn muốn xóa?"
     orders:
       index:
         title: "TỔNG ĐƠN"

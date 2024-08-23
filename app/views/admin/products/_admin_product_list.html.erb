@@ -16,12 +16,12 @@
     <p class="product-stock"><%= product.stock %></p>
     <p class="product-sold"><%= product.sold %></p>
     <div class="product-actions">
-      <button class="edit-button">
+      <%= link_to edit_admin_product_path(product), class: "edit-button" do %>
         <%= image_tag "edit_icon.png", alt: "Edit", class: "icon" %>
-      </button>
-      <button class="delete-button">
+      <% end %>
+      <%= button_to admin_product_path(product), method: :delete, data: { controller: "confirm", action: "turbo:submit-start->confirm#submitWithConfirmation", turbo_confirm: t("admin.products.destroy.messages.confirm_delete") }, class: "delete-button" do %>
         <%= image_tag "delete_icon.webp", alt: "Delete", class: "icon" %>
-      </button>
+      <% end %>
     </div>
   </div>
 </div>

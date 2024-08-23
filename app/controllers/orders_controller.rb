@@ -5,6 +5,13 @@ class OrdersController < ApplicationController
   before_action :set_orders, only: %i(index)
   before_action :find_order, only: %i(update_status show)
 
+  def index
+    @orders = @orders.sorted_by(
+      params[:sort_by] || :updated_at, params[:direction] || :desc
+    )
+    @pagy, @orders = pagy @orders, limit: Settings.page_10
+  end
+
   def show
     if @order.user_id == current_user.id
       @pagy, @order_items = pagy(
@@ -12,7 +19,7 @@ class OrdersController < ApplicationController
         items: Settings.page_10
       )
     else
-      flash[:warning] = t "flash.order_not_found"
+      flash[:error] = t "flash.order_not_found"
       redirect_to root_path
     end
   end
@@ -37,18 +44,6 @@ class OrdersController < ApplicationController
     @orders = fetch_orders
     @current_status = determine_current_status
     @orders_count = @current_user.orders.recently_updated
-  end
-
-  def index
-    sort_by = params[:sort_by].present? ? params[:sort_by].to_sym : nil
-
-    case sort_by
-    when :status
-      @orders = @orders.sorted_by_status
-    when :created_at
-      @orders = @orders.sorted_by_created_at
-    end
-    @pagy, @orders = pagy(@orders, limit: Settings.page_10)
   end
 
   def update_status
@@ -92,9 +87,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update_product_stock_and_sold order_items
+    order_items.each do |item|
+      product = item.product
+      next if product.nil?
+
+      amount = item.quantity
+      if product.stock.nil?
+        product.update(stock: 0)
+        product.increment(stock_amount: 0, sold_amount: amount)
+        product.update(stock: nil)
+      else
+        product.increment(stock_amount: -amount, sold_amount: amount)
+      end
+    end
+  end
+
   def process_order
     add_order_items
     if @order.save
+      update_product_stock_and_sold @order.order_items
       @order.update(paid_at: Time.current)
       Cart.by_id(@order_items_ids).destroy_all
       cookies.delete(:cartitemids)

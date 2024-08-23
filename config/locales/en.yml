@@ -10,6 +10,28 @@ en:
         email: "Email"
         password: "Password"
         password_confirmation: "Password confirmation"
+    errors:
+      models:
+        product:
+          attributes:
+            category_id:
+              blank: "can't be blank"
+            product_name:
+              blank: "can't be blank"
+              too_long: "is too long (maximum is %{count} characters)"
+            price:
+              blank: "can't be blank"
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
+            stock:
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
+            rating:
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
+              less_than_or_equal_to: "must be less than or equal to %{count}"
+      messages:
+        blank: "can't be blank"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        less_than_or_equal_to: "must be less than or equal to %{count}"
+        too_long: "is too long (maximum is %{count} characters)"
   static_pages:
     index:
       title: "Home"
@@ -55,6 +77,7 @@ en:
       maybe_later: "Maybe later"
       login_now: "Login now"
   flash:
+    success: "Login successful"
     invalid_email_password_combination: "Invalid email and password combination. Please try again."
     success_signup: "Created account successfully"
     not_found_product: "Product not found!"
@@ -115,7 +138,7 @@ en:
         place: "Address: "
         blank: "Select Address: "
         user_phone: "Phone: "
-        button: "Add Address: "
+        button: "Add Address "
         paid_at: "Paid at: "
         status: "Status: "
         refuse_reason: "Refused reaon: "
@@ -145,6 +168,8 @@ en:
       no_image: "No image available"
     show:
       title: "Orders"
+      flash:
+        order_not_found: "Order not found!"
     order_header:
       product: "Product"
       price: "Price"
@@ -182,6 +207,34 @@ en:
         sold: "Sold"
         edit: "Edit"
         delete: "Delete"
+      form:
+        category: "Category"
+        select_category: "Select a category"
+        product_name: "Product Name"
+        description: "Description"
+        price: "Price"
+        stock: "Stock"
+        sold: "Sold"
+        rating: "Rating"
+        submit: "Save Product"
+        cancel: "Cancel"
+      new:
+        title: "Add Product"
+      create:
+        messages:
+          success: "Product added successfully"
+          error: "Failed to add product"
+      edit:
+        title: "Update Product"
+      update:
+        messages:
+          success: "Product updated successfully"
+          error: "Failed to update product"
+      destroy:
+        messages:
+          success: "Product deleted successfully"
+          error: "Failed to delete product"
+          confirm_delete: "Are you sure you want to delete?"
     orders:
       index:
         title: "ALL ORDERS"

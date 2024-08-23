@@ -34,17 +34,4 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def admin_show
-    @q = Product.ransack params[:q]
-    @categories = Category.all
-    @query = params[:q][:product_name_cont]
-    session[:search_query] = @query
-    @pagy, @products_search = pagy(
-      @q.result
-      .search,
-      limit: Settings.page_10
-    )
-    render :admin_show
-  end
 end

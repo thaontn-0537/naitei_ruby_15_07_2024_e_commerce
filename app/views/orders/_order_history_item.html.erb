@@ -1,12 +1,13 @@
 <div class="order-item">
+  <% product = Product.with_deleted.find(order_item.product_id) %>
   <div class="item-image">
-    <%= link_to product_path(order_item.product) do %>
-      <%= image_tag(resized_image(order_item.product), alt: order_item.product.product_name, class: "order-image") %>
+    <%= link_to product_path_for_role(product) do %>
+      <%= image_tag(resized_image(product), alt: product.product_name, class: "order-image") %>
     <% end %>
   </div>
   <div class="item-details">
-    <p><%= order_item.product.product_name %></p>
-    <p><%= order_item.quantity %> x <span class="item-price"><%= format_currency order_item.product.price %></span></p>
+    <p><%= product.product_name %></p>
+    <p><%= order_item.quantity %> x <span class="item-price"><%= format_currency product.price %></span></p>
   </div>
   <p><%= format_currency order_item[:item_total] %></p>
 </div>

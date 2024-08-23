@@ -101,11 +101,6 @@ class Admin::OrdersController < AdminController
   end
 
   def prepare_order
-    @order.order_items.each do |order_item|
-      product = order_item.product
-      amount = order_item.quantity
-      product.increment(stock_amount: amount, sold_amount: amount)
-    end
     @order.update(status: :preparing)
     flash[:success] = t "admin.orders.orders_list.update_to_preparing"
   end

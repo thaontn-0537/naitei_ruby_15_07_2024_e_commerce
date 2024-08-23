@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
     log_in user
     params.dig(:session, :remember_me) == "1" ? remember(user) : forget(user)
     remember user
+    flash[:success] = t "flash.success"
     if user.role_admin?
       redirect_to admin_orders_path, status: :see_other
     else
