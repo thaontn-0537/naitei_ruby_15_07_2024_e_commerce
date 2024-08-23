@@ -37,6 +37,7 @@ vi:
     header:
       search:
         placeholder: "Tìm kiếm sản phẩm ưa thích của bạn"
+        search_button: "Tìm kiếm"
       language: "Ngôn ngữ"
       vietnamese: "Tiếng Việt"
       english: "Tiếng Anh"
@@ -151,3 +152,15 @@ vi:
       place_label: "Địa chỉ"
       default_label: "Mặc định"
       add_button: "Thêm địa chỉ"
+  admin:
+    products:
+      add_product:
+        add_button: "Thêm sản phẩm"
+      show_title:
+        product: "Sản phẩm"
+        category: "Danh mục"
+        price: "Giá"
+        stock: "Tồn kho"
+        sold: "Đã bán"
+        edit: "Sửa"
+        delete: "Xóa"

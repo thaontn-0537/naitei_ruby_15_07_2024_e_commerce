@@ -37,6 +37,7 @@ en:
     header:
       search:
         placeholder: "Search for your favourite item"
+        search_button: "Search"
       language: "Language"
       vietnamese: "Vietnamese"
       english: "English"
@@ -151,3 +152,15 @@ en:
       place_label: "Address"
       default_label: "Default"
       add_button: "Add Address"
+  admin:
+    products:
+      add_product:
+        add_button: "Add Product"
+      show_title:
+        product: "Product"
+        category: "Category"
+        price: "Price"
+        stock: "Stock"
+        sold: "Sold"
+        edit: "Edit"
+        delete: "Delete"

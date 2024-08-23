@@ -11,7 +11,7 @@
           <% end %>
           <%= search_form_for @q, url: search_products_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do |f| %>
             <%= f.text_field :product_name_cont,value: @query, class: "form-control me-2 custom-search", placeholder: t(".search.placeholder"), aria: { label: t(".search.placeholder") } %>
-            <%= f.submit class: "btn btn-outline-success" do %>
+            <%= f.submit t(".search.search_button"), class: "btn btn-outline-success" do %>
               <i class="bi bi-search"></i>
             <% end %>
           <% end %>

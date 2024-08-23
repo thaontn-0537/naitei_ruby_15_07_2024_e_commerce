@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
       cookies.delete(:cartitemids)
       cookies.delete(:total)
       flash[:success] = t "orders.order_info.messages.success"
-      redirect_to order_path(@order)
+      redirect_to orders_path
     else
       render :order_info, status: :unprocessable_entity
     end

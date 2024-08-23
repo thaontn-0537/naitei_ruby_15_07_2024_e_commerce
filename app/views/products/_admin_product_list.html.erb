@@ -1,0 +1,27 @@
+<div class="product-list">
+  <div class="product-item">
+    <div class="product-info">
+      <p class="product-id"><%= product.id %></p>
+      <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") %>
+      <div class="product-details">
+        <h2 class="product-name"><%= product.product_name %></h2>
+        <p class="product-description"><%= product.description %></p>
+        <div class="product-rating">
+            <span class="star-icon">★</span><%= product.rating %>
+        </div>
+      </div>
+    </div>
+    <p class="product-category"><%= product.category.category_name %></p>
+    <p class="product-price"><%= format_currency product.price %></p>
+    <p class="product-stock"><%= product.stock %></p>
+    <p class="product-sold"><%= product.sold %></p>
+    <div class="product-actions">
+      <button class="edit-button">
+        <%= image_tag "edit_icon.png", alt: "Edit", class: "icon" %>
+      </button>
+      <button class="delete-button">
+        <%= image_tag "delete_icon.webp", alt: "Delete", class: "icon" %>
+      </button>
+    </div>
+  </div>
+</div>
