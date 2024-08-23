@@ -1,4 +1,4 @@
-module OrdersHelper
+module Admin::OrdersHelper
   def calculate_item_total cart
     product = Product.find_by id: cart.product_id
     cart.quantity * product.price
@@ -17,21 +17,5 @@ module OrdersHelper
 
   def format_price price
     number_with_delimiter price, unit: "đ"
-  end
-
-  def orders_path_for_current_role sort_by
-    if current_user.role_admin?
-      admin_orders_path sort_by:
-    else
-      orders_path sort_by:
-    end
-  end
-
-  def orders_sort_path sort_by, status
-    if current_user.role_admin?
-      admin_orders_path(sort_by:, status:)
-    else
-      orders_path(sort_by:, status:)
-    end
   end
 end

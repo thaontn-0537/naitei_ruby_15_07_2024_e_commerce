@@ -1,7 +1,7 @@
 <% provide :title, t(".title") %>
 <h1><%= t ".title" %></h1>
 
-<%= render partial: "orders/status_list", locals: {current_status: @current_status, orders_count: @orders_count} %>
+<%= render partial: "admin/orders/status_list", locals: {orders_count: @orders_count, current_status: @current_status} %>
 
 <div id="order_list">
   <turbo-stream action="replace" target="order_list">
@@ -12,9 +12,12 @@
             <table class="table table-striped table-hover order-list">
               <%= render partial: "orders/orders_header" %>
               <tbody>
-                <%= render partial: "orders/orders_list", collection: @orders, as: :order %>
+                <%= render partial: "orders_list", collection: @orders, as: :order %>
               </tbody>
             </table>
+            <div class="pagination">
+              <%== pagy_bootstrap_nav(@pagy) %>
+            </div>
           </div>
         </div>
       </div>

@@ -139,7 +139,9 @@ vi:
       status: "Trạng thái"
       total: "Tổng tiền"
       placed_at: "Thời gian đặt hàng"
+      updated_at: "Thời gian cập nhật"
       refuse_reason: "Lý do từ chối"
+      received_by: "Người nhận"
     status_list:
       all: "Tất cả đơn hàng (%{count})"
     orders_list:
@@ -164,3 +166,20 @@ vi:
         sold: "Đã bán"
         edit: "Sửa"
         delete: "Xóa"
+    orders:
+      index:
+        title: "TỔNG ĐƠN"
+      orders_list:
+        no_image: "Không có ảnh"
+        update_to_preparing: "Chuẩn bị hàng"
+        confirm_update_to_preparing: "Bạn đang tiến hành chấp nhận đơn hàng và sẽ phải chuẩn bị hàng!"
+        update_failed: "Cập nhật không thành công"
+        update_to_in_transit: "Giao cho vận chuyển"
+        confirm_update_to_in_transit: "Bạn có chắc chắn muốn giao đơn cho vận chuyển không?"
+        update_to_delivered: "Xác nhận giao hàng"
+        confirm_update_to_delivered: "Bạn vui lòng xác nhận đã giao hàng thành công!"
+        cancel: "Hủy đơn hàng"
+        confirm_cancel_order: "Bạn có chắc chắn muốn từ chối đơn hàng của khách không?"
+        refuse_reason: "Lý do từ chối"
+        update_to_cancelled: "Xóa đơn"
+      not_found_product: "Không tìm thấy đơn hàng"

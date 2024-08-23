@@ -19,4 +19,5 @@ list:
   image_size: 150
   gravatar_size: 150
 page_10: 10
-date_time_format: "%b %d, %Y %I:%M %p"
+date_format: "%b %d, %Y"
+time_format: "%I:%M %p"
