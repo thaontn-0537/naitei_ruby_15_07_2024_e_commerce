@@ -13,11 +13,13 @@
 @import 'product-page';
 @import 'products/admin_show';
 @import 'products/crud';
+@import 'products/feedback';
 @import 'login-modal';
 @import 'orders/receive_info';
 @import 'orders/order_info';
 @import 'addresses/address_form';
 @import 'orders/*';
+@import 'font-awesome';
 
 * {
   padding: 0;

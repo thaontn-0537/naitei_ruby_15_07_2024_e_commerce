@@ -123,6 +123,13 @@ en:
       stock: "Stock"
       price: "Price"
       add_to_cart: "Add to cart"
+      sold: "Sold"
+      out_of_stock: "Sold out"
+    reviews:
+      sort_by_newest: "Newest"
+      sort_by_oldest: "Newest"
+      sort_by_highest_rating: "High rating"
+      sort_by_lowest_rating: "Low rating"
   orders:
     order_info:
       title: "Order Information"
@@ -179,9 +186,13 @@ en:
       no_image: "No image"
       cancel: "Cancel Order"
       confirm_cancel_order: "Are you sure you want to cancel this order?"
+      refuse_reason_by_user: "[By User]:"
+      refuse_reason_by_admin: "[By Admin]:"
     refuse_reason_by_user: "[By User]: %{reason}"
     refuse_reason_by_admin: "[By Admin]: %{reason}"
     updated_to_cancelled: "Order has been cancelled."
+    review: "Review"
+    repurchase: "Repurchase"
   addresses:
     messages:
       success: "Add address successfully!"
@@ -257,3 +268,7 @@ en:
     categories: "Categories"
     products: "Products"
     customers: "Customers"
+  feedbacks:
+    rating: "Rating"
+    comment: "Comment"
+    confirm_review: "Confirm send feedback"

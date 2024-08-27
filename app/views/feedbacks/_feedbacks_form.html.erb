@@ -1,0 +1,62 @@
+<div class="order-item">
+  <div class="item-image">
+    <%= link_to product_path(order_item.product) do %>
+      <%= image_tag(resized_image(order_item.product), alt: order_item.product.product_name, class: "order-image") %>
+    <% end %>
+  </div>
+  <div class="item-details">
+    <p><%= order_item.product.product_name %></p>
+    <p><%= order_item.quantity %> x <span class="item-price"><%= format_currency order_item.product.price %></span></p>
+  </div>
+  <p class="item-total"><%= format_currency order_item[:item_total] %></p>
+</div>
+
+<div class="order-feedback-container">
+  <%= form_with model: Feedback.new, url: order_feedbacks_path(order_item.order), local: true do |form| %>
+    <%= form.hidden_field :product_id, value: order_item.product.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :order_id, value: order.id %>
+
+    <div class="form-group">
+      <%= form.label :rating, t("feedbacks.rating") %>
+      <div id="full-stars-example">
+        <div class="rating-group">
+          <input
+            class="rating__input rating__input--none"
+            name="feedback[rating]"
+            id="rating-none-<%= order_item.id %>"
+            value="0"
+            type="radio">
+          <label
+            aria-label="No rating"
+            class="rating__label"
+            for="rating-none-<%= order_item.id %>">
+            <i class="rating__icon rating__icon--none fa fa-ban"></i>
+          </label>
+
+          <% (1..5).each do |i| %>
+            <label
+              aria-label="<%= i %> star"
+              class="rating__label"
+              for="rating-<%= i %>-<%= order_item.id %>">
+              <i class="rating__icon rating__icon--star fa fa-star"></i>
+            </label>
+            <input
+              class="rating__input"
+              name="feedback[rating]"
+              id="rating-<%= i %>-<%= order_item.id %>"
+              value="<%= i %>"
+              type="radio"
+              <%= 'checked' if i == 3 %>>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :comment, t("feedbacks.comment") %>
+      <%= form.text_area :comment, class: "form-control" %>
+    </div>
+    <%= form.submit t("orders.review"), class: "btn btn-primary", data: { turbo_confirm: t("feedbacks.confirm_review") } %>
+  <% end %>
+</div>
+<hr class="review-divider">

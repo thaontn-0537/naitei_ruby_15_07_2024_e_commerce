@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_28_074001) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["product_id"], name: "index_feedbacks_on_product_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end

@@ -133,6 +133,13 @@ vi:
       stock: "Số lượng trong kho"
       price: "Giá"
       add_to_cart: "Thêm vào giỏ hàng"
+      sold: "Đã bán"
+      out_of_stock: "Bán hết"
+    reviews:
+      sort_by_newest: "Mới nhất"
+      sort_by_oldest: "Cũ nhất"
+      sort_by_highest_rating: "Đánh giá cao"
+      sort_by_lowest_rating: "Đánh giá thấp"
   orders:
     order_info:
       title: "Thông tin đơn hàng"
@@ -187,9 +194,13 @@ vi:
       no_image: "Không có ảnh"
       cancel: "Hủy đơn hàng"
       confirm_cancel_order: "Bạn có muốn xóa hàng? Tiền sẽ không được hoàn trả!!!"
+      refuse_reason_by_user: "[Người dùng]:"
+      refuse_reason_by_admin: "[Admin]:"
     refuse_reason_by_user: "[Người dùng]: %{reason}"
     refuse_reason_by_admin: "[Admin]: %{reason}"
     updated_to_cancelled: "Đơn hàng đã được hủy bỏ."
+    review: "Đánh giá"
+    repurchase: "Mua lại"
   addresses:
     messages:
       success: "Thêm địa chỉ thành công!"
@@ -265,3 +276,7 @@ vi:
     categories: "Danh mục"
     products: "Sản phẩm"
     customers: "Người dùng"
+  feedbacks:
+    rating: "Đánh giá"
+    comment: "Nhận xét"
+    confirm_review: "Xác nhận gửi đánh giá?"

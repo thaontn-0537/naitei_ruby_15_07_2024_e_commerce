@@ -85,4 +85,14 @@ class Product < ApplicationRecord
     self.sold += sold_amount
     save!
   end
+
+  def update_rating
+    if feedbacks.any?
+      average_rating = feedbacks.average(:rating).to_f
+      rounded_rating = average_rating.round(1)
+      update(rating: rounded_rating)
+    else
+      update(rating: 0)
+    end
+  end
 end

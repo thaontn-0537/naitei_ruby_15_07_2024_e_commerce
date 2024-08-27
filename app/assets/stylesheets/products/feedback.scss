@@ -1,0 +1,130 @@
+.reviews {
+  margin: 20px 0;
+}
+
+.review {
+  padding: 15px;
+  border: 1px solid $light-gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: $primary;
+}
+
+.review-header {
+  font-weight: bold;
+}
+
+.review-body {
+  margin: 10px 0;
+}
+
+.review-footer {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.review-divider {
+  border: none;
+  border-top: 1px solid $light-gray;
+  margin: 10px 0;
+}
+
+.order-feedback-container {
+  padding: 20px;
+  background-color: $white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: $box-shadow;
+}
+
+.order-item {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: $primary;
+  border-radius: 8px;
+}
+
+.item-image {
+  margin-bottom: 10px;
+}
+
+.order-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.item-details {
+  margin-bottom: 10px;
+}
+
+.feedback-row {
+  margin-bottom: 20px;
+}
+
+.feedback-info {
+  padding: 15px;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+}
+
+.review-divider {
+  border: none;
+  border-top: 1px solid $border-gray;
+  margin-top: 15px;
+}
+
+#full-stars-example {
+
+  .rating-group {
+    display: inline-flex;
+  }
+
+  .rating__icon {
+    pointer-events: none;
+  }
+
+  .rating__input {
+   position: absolute !important;
+   left: -9999px !important;
+  }
+
+  .rating__label {
+    cursor: pointer;
+    padding: 0 0.1em;
+    font-size: 2rem;
+  }
+
+  .rating__icon--star {
+    color: orange;
+  }
+
+  .rating__icon--none {
+    color: $border-gray;
+  }
+
+  .rating__input--none:checked + .rating__label .rating__icon--none {
+    color: red;
+  }
+
+  .rating__input:checked ~ .rating__label .rating__icon--star {
+    color: $light-gray;
+  }
+
+  .rating-group:hover .rating__label .rating__icon--star {
+    color: orange;
+  }
+
+  .rating__input:hover ~ .rating__label .rating__icon--star {
+    color: $light-gray;
+  }
+
+  .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+     color: $border-gray;
+  }
+
+  .rating__input--none:hover + .rating__label .rating__icon--none {
+    color: red;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="reviews">
+  <h3><%= t "orders.review" %></h3>
+
+  <div class="sort-buttons">
+    <%= sortreviews(:created_at, t(".sort_by_newest")) %>
+    <%= sortreviews(:rating, t(".sort_by_highest_rating")) %>
+  </div>
+  <hr class="review-divider">
+  <% if feedbacks.any? %>
+    <%= render partial: "products/feedbacks", collection: feedbacks, as: :feedback %>
+  <% else %>
+    <p><%= t ".no_reviews" %></p>
+  <% end %>
+</div>

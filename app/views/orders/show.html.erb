@@ -2,30 +2,45 @@
 <h1><%= t ".title" %></h1>
 
 <%= form_with model: @order, local: true do |form| %>
+  <div class="order-status">
+    <% order_statuses.each_with_index do |status, index| %>
+      <div class="status-circle <%= status_classes(@order, status[:value]) %>">
+        <%= status[:name] %>
+      </div>
+      <% if index < order_statuses.length - 1 %>
+        <div class="status-line <%= line_classes(@order, index, order_statuses) %>"></div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="order-show">
     <div class="order-info-show">
       <div id="receive_info" class="receive_info">
-        <%= render partial: "orders/order_history_info", locals: {order: @order} %>
+        <%= render partial: "orders/order_history_info", locals: { order: @order } %>
       </div>
+
       <div id="payment-method" class="payment-method">
-        <h4><%= t "orders.order_info.your_payment_method" %></h4>
-        <div class="payment-methods">
-          <div class="payment-option">
-            <div class="payment-image">
-              <% if @order.payment_method.to_sym == :vnpay %>
-                <%= image_tag "vnpay_logo.avif", alt: "VNPay" %>
-              <% else %>
-                <%= image_tag "momo_logo.png", alt: "Momo" %>
-              <% end %>
+        <h4>
+          <%= t "orders.order_info.your_payment_method" %>
+          <div class="payment-methods">
+            <div class="payment-option">
+              <div class="payment-image">
+                <% if @order.payment_method.to_sym == :vnpay %>
+                  <%= image_tag "vnpay_logo.avif", alt: "VNPay" %>
+                <% else %>
+                  <%= image_tag "momo_logo.png", alt: "Momo" %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        </h4>
       </div>
     </div>
 
     <div id="order_summary" class="order_summary">
       <div class="order-summary">
         <h3><%= t "orders.order_info.summary.title" %></h3>
+
         <div class="order-items-container">
           <% if @order_items.present? %>
             <%= render partial: "orders/order_history_item", collection: @order_items, as: :order_item %>
@@ -33,10 +48,21 @@
             <p><%= t "orders.order_info.summary.empty_cart" %></p>
           <% end %>
         </div>
+
         <div class="order-summary-details">
-          <p><strong><%= t "orders.order_info.summary.total" %></strong>
-          <span class="total-price"><%= format_currency @order.total %></span></p>
+          <p>
+            <strong><%= t "orders.order_info.summary.total" %></strong>
+            <span class="total-price"><%= format_currency @order.total %></span>
+          </p>
         </div>
       </div>
     </div>
+  </div>
+  <div class="order-feedback-container shadow">
+    <% if @order.status_delivered? %>
+      <% @order_items.each do |order_item| %>
+        <%= render_feedback_or_form(@order, order_item) %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>

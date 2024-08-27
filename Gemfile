@@ -9,6 +9,7 @@ gem "bootsnap", require: false
 gem "bootstrap-sass", "3.4.1"
 gem "config"
 gem "faker", "2.21.0"
+gem "font-awesome-sass", "~> 6.0"
 gem "image_processing", "1.12.2"
 gem "importmap-rails"
 gem "jbuilder"
