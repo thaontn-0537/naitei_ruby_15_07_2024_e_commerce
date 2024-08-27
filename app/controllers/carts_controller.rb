@@ -36,8 +36,9 @@ class CartsController < ApplicationController
   end
 
   def destroy
+    remove_cart_item_from_selection if selected_items.include?(@cart&.id)
     @cart.destroy
-    handle_selection if selected_items.include?(@cart&.id)
+    update_count_and_total
 
     respond_to do |format|
       format.turbo_stream
@@ -62,7 +63,18 @@ class CartsController < ApplicationController
       update_selected_items
       update_selected_total
     end
+    update_count_and_total
+  end
 
+  def remove_cart_item_from_selection
+    items = selected_items
+    items.delete @cart.id
+    cookies[:cartitemids] = items.to_json
+
+    update_selected_total
+  end
+
+  def update_count_and_total
     @count = selected_items_count || 0
     @total = formatted_selected_total || 0
   end
