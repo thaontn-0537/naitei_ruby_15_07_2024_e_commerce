@@ -29,7 +29,7 @@
         <hr class="my-3">
         <%= form_with url: update_status_admin_order_path(order, status: :cancelled), method: :patch, local: true do |form| %>
           <div class="form-group">
-            <%= form.label :refuse_reason, t(".refuse_reason") %>
+            <%= form.label :refuse_reason, t("orders.orders_list.refuse_reason_by_admin") %>
             <%= form.text_area :refuse_reason, class: "form-control", required: true %>
           </div>
           <%= form.submit t(".cancel"), class: "btn btn-danger mt-2", data: {turbo_confirm: t(".confirm_cancel_order")} %>

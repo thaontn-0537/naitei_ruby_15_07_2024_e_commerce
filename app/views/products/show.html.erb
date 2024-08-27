@@ -18,16 +18,24 @@
       <p><strong><%= t ".rating" %>:</strong> <%= @product.rating %></p>
       <p>
         <strong><%= t ".sold" %>:</strong>
-        <%= @product.sold > 0 ? @product.sold : t(".out_of_stock") %>
+        <%= @product.sold.positive? ? @product.sold : t(".out_of_stock") %>
       </p>
     </div>
   </div>
 
   <div class="product-price-row">
-    <p class="product-price"><%= t ".price" %>: <span><%= number_to_currency @product.price, unit: "₫", precision: 0 %></span></p>
+    <p class="product-price">
+      <%= t ".price" %>:
+      <span><%= number_to_currency @product.price, unit: "₫", precision: 0 %></span>
+    </p>
+
     <div id="cart_button_<%= @product.id %>">
-      <%= render partial: "carts/cart_button",
-                 locals: {cart: @cart, product_id: @product.id} %>
+      <% if @product.stock.zero? %>
+        <p class="soldout"><%= t "products.soldout" %></p>
+      <% else %>
+        <%= render partial: "carts/cart_button",
+                   locals: { cart: @cart, product_id: @product.id } %>
+      <% end %>
     </div>
   </div>
   <%= render partial: "reviews", locals: { feedbacks: @feedbacks } %>

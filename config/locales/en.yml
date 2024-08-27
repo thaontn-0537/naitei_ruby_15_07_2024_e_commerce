@@ -107,7 +107,7 @@ en:
   products:
     search:
       title: "Search"
-      search_result_for: "Search result for '%{query}'"
+      search_result_for: "(%{count})Search result for '%{query}'"
       category: "Category"
       price: "Price"
       price_range: "Price range"
@@ -115,6 +115,7 @@ en:
       rating: "Rating"
       filter: "Filter"
       sold: "Sold"
+      no_products_found: "No product '%{query}'"
     show:
       title: "Product"
       product: "Product: %{name}"
@@ -130,6 +131,7 @@ en:
       sort_by_oldest: "Newest"
       sort_by_highest_rating: "High rating"
       sort_by_lowest_rating: "Low rating"
+    soldout: "Soldout"
   orders:
     order_info:
       title: "Order Information"
@@ -272,3 +274,4 @@ en:
     rating: "Rating"
     comment: "Comment"
     confirm_review: "Confirm send feedback"
+    image: "Image"
