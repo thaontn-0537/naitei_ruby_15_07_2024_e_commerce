@@ -1,6 +1,9 @@
 <tr id="cart_<%= cart.id %>">
   <td>
-    <input type="checkbox" class="product-checkbox" name="cart_item_checkbox" value="<%= cart.id %>">
+    <%= form_with url: update_selection_cart_path(cart), method: :patch, data: { turbo_stream: true } do %>
+      <input type="checkbox" class="product-checkbox" name="is_checked" value="true">
+      <%= hidden_field_tag :cart_id, cart.id %>
+    <% end %>
   </td>
   <td class="product-image">
     <%= link_to product_path(cart.product) do %>
@@ -20,8 +23,8 @@
     <input type="text" class="quantity-input" value="<%= cart.quantity %>" readonly>
     <%= button_to "+", cart_path(cart, action_type: "increment", product_id: cart.product_id), method: :patch, class: "quantity-btn", data: { turbo: "true" } %>
   </td>
-  <td class="total-price">
-    <span id="total_price_<%= cart.product_id %>" class="value cart_<%= cart.id %>"><%= format_price(calculate_product_price(cart.product, cart.quantity)) %></span>
+  <td class="total-price" id="total_price_<%= cart.product_id %>">
+    <span class="value cart_<%= cart.id %>"><%= format_price(calculate_product_price(cart.product, cart.quantity)) %></span>
   </td>
   <td class="actions">
     <%= button_to image_tag("delete.png"), cart_path(cart, product_id: cart.product_id), method: :delete, class: "delete-button", data: { turbo: "true" } %>

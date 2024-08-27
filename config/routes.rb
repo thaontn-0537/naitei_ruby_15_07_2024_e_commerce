@@ -19,7 +19,9 @@ Rails.application.routes.draw do
         get :show
       end
     end
-    resources :carts, only: %i(index create update destroy)
+    resources :carts, only: %i(index create update destroy) do
+      patch :update_selection, on: :member
+    end
     resources :addresses, only: %i(new create)
     get "orders/order_info"
     post "orders", to: "orders#create"

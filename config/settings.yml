@@ -21,3 +21,4 @@ list:
 page_10: 10
 date_format: "%b %d, %Y"
 time_format: "%I:%M %p"
+date_time_format: "%b %d, %Y %I:%M %p"

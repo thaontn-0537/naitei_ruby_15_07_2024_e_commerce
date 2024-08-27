@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "cart_total_sum" do %>
+  <div id="cart_total_sum">
+    <p class="text-center total-price">
+      (<span id="cart_items_count"><%= @count %></span><%= t ".product_count" %>)
+      <span id="cart_items_total"><%= format_price @total %></span>
+    </p>
+  </div>
+<% end %>

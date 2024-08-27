@@ -8,6 +8,7 @@ class CartsController < ApplicationController
       current_user.carts.includes(:product),
       items: Settings.page_10
     )
+    reset_selection
   end
 
   def create
@@ -24,7 +25,9 @@ class CartsController < ApplicationController
   end
 
   def update
-    process_cart_update params[:action_type]
+    process_cart_update(params[:action_type]) if params[:action_type].present?
+
+    handle_selection
 
     respond_to do |format|
       format.turbo_stream
@@ -34,16 +37,80 @@ class CartsController < ApplicationController
 
   def destroy
     @cart.destroy
+    handle_selection if selected_items.include?(@cart&.id)
+
     respond_to do |format|
       format.turbo_stream
       format.html{redirect_to product_path @cart.product}
     end
   end
 
+  def update_selection
+    find_cart_item_for_selection
+    handle_selection
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html{redirect_to carts_path}
+    end
+  end
+
   private
+
+  def handle_selection
+    if params[:is_checked].present? || selected_items.include?(@cart&.id)
+      update_selected_items
+      update_selected_total
+    end
+
+    @count = selected_items_count || 0
+    @total = formatted_selected_total || 0
+  end
+
+  def reset_selection
+    cookies[:cartitemids] = [].to_json
+    cookies[:total] = 0
+    @count = 0
+    @total = 0
+  end
+
+  def update_selected_items
+    cart_id = params[:cart_id].to_i
+    items = selected_items
+
+    if params[:is_checked] == "true"
+      items << cart_id unless items.include? cart_id
+    else
+      items.delete cart_id
+    end
+
+    cookies[:cartitemids] = items.to_json
+  end
+
+  def update_selected_total
+    selected_carts = Cart.by_id selected_items
+    total = selected_carts.sum{|cart| cart.quantity * cart.product.price}
+    cookies[:total] = total.to_s
+  end
+
+  def selected_items
+    JSON.parse(cookies[:cartitemids].presence || "[]").map(&:to_i)
+  end
+
+  def selected_items_count
+    selected_items.size
+  end
+
+  def formatted_selected_total
+    cookies[:total].to_i
+  end
 
   def find_cart_item
     @cart = current_user.carts.find_by product_id: params[:product_id]
+  end
+
+  def find_cart_item_for_selection
+    @cart = current_user.carts.find_by id: params[:cart_id]
   end
 
   def process_cart_update action_type

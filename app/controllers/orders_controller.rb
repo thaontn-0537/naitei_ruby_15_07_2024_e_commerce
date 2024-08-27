@@ -138,7 +138,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     return if @order
 
-    flash[:error] = t("orders.not_found")
+    flash[:error] = t "orders.not_found"
     redirect_to orders_path
   end
 end
