@@ -7,7 +7,7 @@
     <div class="form-group">
       <%= f.label :place, t("orders.order_info.receive_info.place") %>
       <div class="select-wrapper">
-        <%= f.select :place, options_for_select(@addresses.map {|a| [a.place, a.place]}, @address&.place), {include_blank: t("orders.order_info.receive_info.blank")}, class: "form-control custom-select", required: true, id: "address-select" %>
+        <%= f.select :place, address_options_for_select(@addresses), {include_blank: t("orders.order_info.receive_info.blank")}, class: "form-control custom-select", required: true, id: "address-select" %>
         <img src="/assets/arrow_down.png" alt="Dropdown Arrow" class="select-arrow">
       </div>
     </div>

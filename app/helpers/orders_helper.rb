@@ -41,4 +41,13 @@ module OrdersHelper
     end ||
       orders.any?{|order| order.status.to_sym == :pending}
   end
+
+  def address_options_for_select addresses
+    if addresses.empty?
+      options_for_select([], nil)
+    else
+      options = addresses.map{|a| [a.place, a.place]}
+      options_for_select(options, addresses&.place)
+    end
+  end
 end
