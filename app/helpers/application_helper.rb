@@ -13,11 +13,11 @@ module ApplicationHelper
   end
 
   def skip_header?
-    action_name == "new" || controller_name == "sessions"
+    controller_name == "users" || controller_name == "sessions"
   end
 
   def skip_container?
-    action_name == "new" || controller_name == "sessions"
+    controller_name == "users" || controller_name == "sessions"
   end
 
   def format_currency amount
@@ -39,5 +39,12 @@ module ApplicationHelper
 
   def toast_type key
     key.to_s.gsub("alert", "error").gsub("notice", "success")
+  end
+
+  def nav_link_to name, path, html_options = {}
+    active_class = "active" if current_page? path
+    html_options[:class] =
+      "#{html_options[:class]} nav-link #{active_class}".strip
+    link_to name, path, html_options
   end
 end

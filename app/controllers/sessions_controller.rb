@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def invalid_log_in
-    flash.now[:danger] = t "flash.invalid_email_password_combination"
+    flash.now[:error] = t "flash.invalid_email_password_combination"
     render :new, status: :unprocessable_entity
   end
 end
