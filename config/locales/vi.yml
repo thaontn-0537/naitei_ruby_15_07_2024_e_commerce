@@ -2,12 +2,22 @@ vi:
   defaults:
     name: "Boutique Design"
   activerecord:
+    errors:
+      messages:
+        wrong_length: "có số lượng kí tự sai"
+        blank: "không được để trống"
+        taken: "đã được sử dụng"
+        invalid: "không hợp lệ"
+        too_short: "quá ngắn"
+        too_long: "quá dài"
+        confirmation: "không đúng"
     models:
       users: "Người dùng"
     attributes:
       user:
         user_name: "Tên"
         email: "Email"
+        phone: "Số điện thoại"
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
   static_pages:
@@ -58,6 +68,8 @@ vi:
     invalid_email_password_combination: "Email hoặc mật khẩu sai. Hãy thử lại."
     success_signup: "Tạo tài khoản thành công"
     not_found_product: "Không tìm thấy sản phẩm!"
+    no_stock: "Sản phẩm hiện tại đang hết hàng"
+    add_to_cart_failed: "Cho sản phẩm vào giỏ hàng thát bại"
   carts:
     cart_header:
       product: "Sản phẩm"
@@ -67,6 +79,8 @@ vi:
       action: "Hành động"
     cart_button:
       add_to_cart: "Thêm vào giỏ hàng"
+    cart_details:
+      not_enough_stock: "Bạn không thể đặt nhiều hơn số lượng trong kho"
     index:
       title: "Giỏ hàng"
       total_cart: "TỔNG GIỎ HÀNG"
@@ -160,6 +174,11 @@ vi:
       default_label: "Mặc định"
       add_button: "Thêm địa chỉ"
   admin:
+    admin_header:
+      language: "Ngôn ngữ"
+      vietnamese: "Tiếng Việt"
+      english: "Tiếng Anh"
+      log_out: "Đăng xuất"
     products:
       add_product:
         add_button: "Thêm sản phẩm"
@@ -188,3 +207,8 @@ vi:
         refuse_reason: "Lý do từ chối"
         update_to_cancelled: "Xóa đơn thành công"
       not_found_product: "Không tìm thấy đơn hàng"
+  admin_nav:
+    orders: "Các đơn hàng"
+    categories: "Danh mục"
+    products: "Sản phẩm"
+    customers: "Người dùng"

@@ -18,6 +18,7 @@
     </div>
 
     <h2><%= t ".title" %></h2>
+    <%= render "shared/error_messages", object: @user %>
 
     <%= form_for @user, url: signup_path do |f| %>
       <div class="form-group">

@@ -135,7 +135,12 @@ class CartsController < ApplicationController
   end
 
   def increment_cart_quantity
-    @cart.update quantity: @cart.quantity + 1
+    stock = @cart.product.stock
+    if @cart.quantity < stock
+      @cart.update quantity: @cart.quantity + 1
+    else
+      flash[:error] = t ".not_enough_stock"
+    end
   end
 
   def decrement_cart_quantity
@@ -144,7 +149,10 @@ class CartsController < ApplicationController
   end
 
   def create_cart
-    if @cart.new_record? || @cart.quantity <= 0
+    product = Product.find params[:product_id]
+    if product.stock.zero?
+      flash[:error] = t "flash.no_stock"
+    elsif @cart.new_record? || @cart.quantity <= 0
       @cart = current_user.carts.new(product_id: params[:product_id],
                                      quantity: 1)
     else
