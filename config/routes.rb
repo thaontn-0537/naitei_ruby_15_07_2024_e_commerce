@@ -15,9 +15,6 @@ Rails.application.routes.draw do
         get :search
         get :filter_by_category
       end
-      member do
-        get :show
-      end
     end
     resources :carts, only: %i(index create update destroy) do
       patch :update_selection, on: :member
@@ -25,7 +22,6 @@ Rails.application.routes.draw do
     resources :addresses, only: %i(new create)
     get "orders/order_info"
     post "orders", to: "orders#create"
-    get "admin_show", to: "products#admin_show"
     resources :orders, only: %i(show index) do
       member do
         patch :update_status
@@ -38,6 +34,7 @@ Rails.application.routes.draw do
           patch :update_status
         end
       end
+      resources :products, only: %i(index new create edit update show destroy)
     end
   end
 end

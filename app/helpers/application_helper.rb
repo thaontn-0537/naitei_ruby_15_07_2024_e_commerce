@@ -6,18 +6,44 @@ module ApplicationHelper
   end
 
   def resized_image record
-    return unless record.image.attached?
+    return "logo.png" unless record.image.attached?
 
-    record.image.variant(resize_to_fill: [Settings.list.image_size,
-                                          Settings.list.image_size]).processed
+    begin
+      record.image.variant(resize_to_fill: [Settings.list.image_size,
+                                            Settings.list.image_size]).processed
+    rescue ActiveStorage::InvariableError
+      "logo.png"
+    end
+  end
+
+  def order_item_image order, path
+    if order.order_items.any? &&
+       order.order_items.first.product&.image&.attached?
+      product = order.order_items.first.product
+      link_to image_tag(resized_image(product), alt: product.product_name,
+      class: "product-image"), path
+    else
+      link_to image_tag("logo.png", alt: t(".no_image"),
+      class: "product-image"), path
+    end
+  end
+
+  def product_path_for_role product
+    if current_user.role_admin?
+      admin_products_path q: {product_name_cont: product.product_name}
+    else
+      product_path(product)
+    end
   end
 
   def skip_header?
-    controller_name == "users" || controller_name == "sessions"
+    (action_name == "new" && controller_name == "users") ||
+      controller_name == "sessions"
   end
 
   def skip_container?
-    controller_name == "users" || controller_name == "sessions"
+    (action_name == "new" && controller_name == "users") ||
+      controller_name == "sessions"
   end
 
   def format_currency amount

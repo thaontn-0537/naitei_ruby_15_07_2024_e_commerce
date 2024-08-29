@@ -8,7 +8,7 @@
   margin-top: 60px;
 }
 
-button.add-button {
+a.add-button {
   display: block;
   padding: 5px 10px;
   text-align: center;
@@ -22,7 +22,7 @@ button.add-button {
   margin-bottom: 20px;
 }
 
-button.add-button:hover{
+a.add-button:hover{
   background-color: $button-hover;
   color: $white;
 }
@@ -135,4 +135,9 @@ button.add-button:hover{
 
 .icon{
   width: 24px;
+}
+
+.form-control .custom-select{
+  padding: 0px !important;
+  padding-left: 15px !important;
 }

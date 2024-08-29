@@ -19,19 +19,11 @@ module OrdersHelper
     number_with_delimiter price, unit: "đ"
   end
 
-  def orders_path_for_current_role sort_by
+  def orders_sort_path sort_by, status, direction: "asc"
     if current_user.role_admin?
-      admin_orders_path sort_by:
+      admin_orders_path(sort_by:, status:, direction:)
     else
-      orders_path sort_by:
-    end
-  end
-
-  def orders_sort_path sort_by, status
-    if current_user.role_admin?
-      admin_orders_path(sort_by:, status:)
-    else
-      orders_path(sort_by:, status:)
+      orders_path(sort_by:, status:, direction:)
     end
   end
 
@@ -47,7 +39,58 @@ module OrdersHelper
       options_for_select([], nil)
     else
       options = addresses.map{|a| [a.place, a.place]}
-      options_for_select(options, addresses&.place)
+      default_address_place = addresses.find(&:default)&.place ||
+                              addresses.first.place
+      options_for_select(options, default_address_place)
     end
+  end
+
+  def status_classes order, status_value
+    current_status_value = Order.statuses[order.status.to_sym]
+
+    if order.status_cancelled?
+      status_value == Order.statuses[:cancelled] ? "cancelled" : ""
+    else
+      status_value <= current_status_value ? "completed" : ""
+    end
+  end
+
+  def line_classes order, index, statuses
+    if order.status_cancelled?
+      ""
+    elsif index < statuses.length - 1
+      next_status_value = statuses[index + 1][:value]
+      current_status_value = Order.statuses[order.status.to_sym]
+
+      if next_status_value <= current_status_value
+        "completed"
+      else
+        ""
+      end
+    else
+      ""
+    end
+  end
+
+  def order_statuses
+    Order.statuses.keys.map do |status_key|
+      {
+        name: status_name(status_key),
+        value: Order.statuses[status_key]
+      }
+    end
+  end
+
+  def sortable column, title = nil
+    title ||= t(".#{column}")
+    direction = if column.to_s == params[:sort_by] &&
+                   params[:direction] == "asc"
+                  "desc"
+                else
+                  "asc"
+                end
+    link_to title, orders_sort_path(
+      column, params[:status] || :all, direction:
+    )
   end
 end

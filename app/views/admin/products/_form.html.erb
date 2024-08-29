@@ -1,0 +1,58 @@
+<%= render "shared/error_messages", object: @product %>
+
+<%= form_with model: [:admin, @product], local: true do |f| %>
+  <div class="product_info">
+    <div class="form-group">
+      <%= f.label :category_id do %>
+        <%= t("admin.products.form.category") %> <span class="required">*</span>
+      <% end %>
+      <div class="select-wrapper">
+        <%= f.collection_select :category_id, @categories, :id, :category_name, {prompt: t("admin.products.form.select_category")}, {class: "form-control custom-select", required: true} %>
+        <img src="/assets/arrow_down.png" alt="Dropdown Arrow" class="select-arrow">
+      </div>
+    </div>
+
+    <div class="image-name">
+      <div class="form-group">
+        <%= f.label :image do %>
+          <%= t("admin.products.form.image") %> <span class="required">*</span>
+        <% end %>
+        <%= f.file_field :image, class: "form-control-file", id: "image_input", required: action_name == "new" %>
+        <% if @product.image.attached? %>
+          <img id="preview_image" src="<%= url_for(@product.image) %>" alt="Current Image" style="max-width: 200px; margin-top: 10px;" />
+        <% else %>
+          <img id="preview_image" src="#" alt="Image Preview" style="display: none; max-width: 200px; margin-top: 10px;" />
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :product_name do %>
+          <%= t("admin.products.form.product_name") %> <span class="required">*</span>
+        <% end %>
+        <%= f.text_field :product_name, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, t("admin.products.form.description") %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="price-stock">
+      <div class="form-group">
+        <%= f.label :price do %>
+          <%= t("admin.products.form.price") %> <span class="required">*</span>
+        <% end %>
+        <%= f.number_field :price, class: "form-control", placeholder:  "#{Settings.suggest_price}",required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :stock, t("admin.products.form.stock") %>
+        <%= f.number_field :stock, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit t("admin.products.form.submit"), class: "btn btn-primary" %>
+      <%= link_to t("admin.products.form.cancel"), admin_products_path(q: {product_name_cont: session[:search_query]}), class: "btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>

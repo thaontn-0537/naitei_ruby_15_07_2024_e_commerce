@@ -1,6 +1,6 @@
 <li class="product-list-item">
   <%= link_to product_path(product) do %>
-    <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") %>
+    <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") if product.image.attached? %>
   <% end %>
   <div class="product-list-item-info">
     <div class="product-list-item-name-rating">
