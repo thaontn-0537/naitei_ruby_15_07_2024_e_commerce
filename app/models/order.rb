@@ -64,6 +64,8 @@ class Order < ApplicationRecord
   def update_product_stock_sold
     order_items.each do |order_item|
       product = order_item.product
+      next if product.nil?
+
       amount = order_item.quantity
       if product.stock.nil?
         product.update(stock: 0)

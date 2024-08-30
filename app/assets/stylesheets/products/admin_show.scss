@@ -94,12 +94,28 @@ a.add-button:hover{
   font-weight: 900;
   color: $dark-blue;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.2em;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .product-description {
   font-size: 14px;
   color: $product-desc;
   margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.2em;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .product-rating {
