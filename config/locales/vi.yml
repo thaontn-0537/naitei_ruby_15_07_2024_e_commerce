@@ -149,6 +149,7 @@ vi:
       add_to_cart: "Thêm vào giỏ hàng"
       sold: "Đã bán"
       out_of_stock: "Bán hết"
+      share_title: "Sản phẩm này thật tuyệt vời! Hãy thử nó ngay!"
     reviews:
       sort_by_newest: "Mới nhất"
       sort_by_oldest: "Cũ nhất"
@@ -297,3 +298,8 @@ vi:
     comment: "Nhận xét"
     confirm_review: "Xác nhận gửi đánh giá?"
     image: "Ảnh sản phẩm"
+  social_share_button:
+    share_to: "Chia sẻ tới:"
+    twitter: "Twitter"
+    reddit: "Reddit"
+    email: "Email"
