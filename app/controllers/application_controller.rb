@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  include SessionsHelper
+  before_action :configure_sign_up_params, if: :devise_controller?
+
   include Pagy::Backend
 
   def default_url_options
@@ -26,5 +27,12 @@ class ApplicationController < ActionController::Base
                        else
                          []
                        end
+  end
+
+  protected
+
+  def configure_sign_up_params
+    added_attrs = User::ACCOUNT_PARAMS
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
   end
 end

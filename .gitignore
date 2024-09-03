@@ -83,6 +83,7 @@ build-iPhoneSimulator/
 /config/database.yml
 /test/*
 /config/credentials.yml.enc
+/config/application.yml
 
 .gitattributes
 /apps/assets/builds/*

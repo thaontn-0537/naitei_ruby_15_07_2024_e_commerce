@@ -5,8 +5,10 @@ require "open-uri"
 admin_user = User.create!(email: "admin@email.com",
              user_name: "Admin",
              password: "adminaccount",
+             password_confirmation: "adminaccount",
              role: :admin,
-             phone: "0987654322")
+             phone: "0987654322",
+             confirmed_at: DateTime.now)
 
 admin_user.image.attach(
   io: URI.open("https://picsum.photos/200/200?random=1"),
@@ -20,8 +22,10 @@ users = 15.times.map do
     user_name: Faker::Name.name,
     email: Faker::Internet.email,
     password: "password",
+    password_confirmation: "password",
     phone: "0987654321",
-    created_at: DateTime.now
+    created_at: DateTime.now,
+    confirmed_at: DateTime.now
   )
 
   user.image.attach(
