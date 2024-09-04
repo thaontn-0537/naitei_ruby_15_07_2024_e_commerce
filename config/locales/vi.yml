@@ -93,6 +93,10 @@ vi:
     not_found_product: "Không tìm thấy sản phẩm!"
     no_stock: "Sản phẩm hiện tại đang hết hàng"
     add_to_cart_failed: "Cho sản phẩm vào giỏ hàng thát bại"
+    feedbacks:
+      already_exists: "Đã tồn tại"
+      success: "Thành công"
+      error: "Lỗi"
   carts:
     cart_header:
       product: "Sản phẩm"
@@ -117,7 +121,7 @@ vi:
   products:
     search:
       title: "Tìm kiếm"
-      search_result_for: "Kết quả tìm kiếm cho: '%{query}'"
+      search_result_for: "(%{count})Kết quả tìm kiếm cho: '%{query}'"
       category: "Danh mục sản phẩm"
       price: "Giá"
       price_range: "Khoảng giá"
@@ -125,6 +129,7 @@ vi:
       rating: "Đánh giá"
       filter: "Lọc"
       sold: "Đã bán"
+      no_products_found: "Không có sản phẩm '%{query}'"
     show:
       title: "Sản phẩm"
       product: "Sản phẩm: %{name}"
@@ -140,6 +145,7 @@ vi:
       sort_by_oldest: "Cũ nhất"
       sort_by_highest_rating: "Đánh giá cao"
       sort_by_lowest_rating: "Đánh giá thấp"
+    soldout: "HẾT HÀNG"
   orders:
     order_info:
       title: "Thông tin đơn hàng"
@@ -280,3 +286,4 @@ vi:
     rating: "Đánh giá"
     comment: "Nhận xét"
     confirm_review: "Xác nhận gửi đánh giá?"
+    image: "Ảnh sản phẩm"

@@ -15,6 +15,15 @@
       <div class="review-footer">
         <p><strong><%= t ".date" %>:</strong> <%= feedback.created_at.strftime("%B %d, %Y") %></p>
       </div>
+      <div class="col-md-3">
+        <% if feedback.image.attached? %>
+          <div class="feedback-image">
+            <img id="preview_image" src="<%= url_for(resized_image(feedback)) %>" />
+          </div>
+        <% else %>
+          <img id="preview_image" src="#" alt="Image Preview" style="display: none; max-width: 100%; margin-top: 10px;" />
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

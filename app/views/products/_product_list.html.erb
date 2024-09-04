@@ -1,15 +1,28 @@
 <li class="product-list-item">
-  <%= link_to product_path(product) do %>
-    <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") if product.image.attached? %>
-  <% end %>
+  <div class="product-image-container">
+    <%= link_to product_path(product) do %>
+      <%= image_tag(resized_image(product), alt: product.product_name, class: "product-image") %>
+      <% if product.stock == 0 %>
+        <div class="out-of-stock-overlay">
+          <span class="out-of-stock-text"><%= t "products.soldout" %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="product-list-item-info">
     <div class="product-list-item-name-rating">
       <%= link_to product_path(product) do %>
         <h3 class="product-list-item-name"><%= product.product_name %></h3>
       <% end %>
-      <h3 class="product-list-item-rating"><span class="star-icon">★</span><%= product.rating %></h3>
+      <h3 class="product-list-item-rating">
+        <span class="star-icon">★</span><%= product.rating %>
+      </h3>
+    </div>
+    <div class="product-list-item-sold">
+      <p><%= t "products.search.sold" %> <%= product.sold %></p>
     </div>
     <h3 class="product-list-item-desc"><%= product.description %></h3>
-    <p class="product-list-item-price"><%= product.price %> đ</p>
+    <p class="product-list-item-price"><%= format_currency product.price %></p>
   </div>
 </li>

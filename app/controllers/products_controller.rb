@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
       .search,
       limit: Settings.page_10
     )
+    @total_results = @q.result.count
     render :search
   end
 
@@ -20,6 +21,7 @@ class ProductsController < ApplicationController
       .search,
       limit: Settings.page_10
     )
+    @total_results = @filter.result.count
     render :search
   end
 

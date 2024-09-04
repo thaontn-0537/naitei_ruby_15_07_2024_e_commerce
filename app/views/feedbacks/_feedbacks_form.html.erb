@@ -47,7 +47,7 @@
               id="rating-<%= i %>-<%= order_item.id %>"
               value="<%= i %>"
               type="radio"
-              <%= 'checked' if i == 3 %>>
+              <%= "checked" if i == 3 %>>
           <% end %>
         </div>
       </div>
@@ -55,6 +55,10 @@
     <div class="form-group">
       <%= form.label :comment, t("feedbacks.comment") %>
       <%= form.text_area :comment, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :image, t("feedbacks.image") %>
+      <%= form.file_field :image, class: "form-control-file", required: action_name == "new" %>
     </div>
     <%= form.submit t("orders.review"), class: "btn btn-primary", data: { turbo_confirm: t("feedbacks.confirm_review") } %>
   <% end %>

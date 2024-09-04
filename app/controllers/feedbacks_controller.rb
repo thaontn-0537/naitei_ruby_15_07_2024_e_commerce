@@ -21,7 +21,7 @@ class FeedbacksController < ApplicationController
   def build_feedback_params
     params
       .require(:feedback)
-      .permit(:rating, :comment, :product_id, :order_id)
+      .permit(:rating, :comment, :product_id, :order_id, :image)
       .merge(user_id: current_user.id)
   end
 

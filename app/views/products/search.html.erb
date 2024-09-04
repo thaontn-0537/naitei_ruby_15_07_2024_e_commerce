@@ -1,7 +1,7 @@
 <% provide :title, t(".title") %>
 <h1><%= t ".title" %></h1>
 
-<p><%= t ".search_result_for", query: @query %></p>
+<p><%= t(".search_result_for", query: @query, count: @total_results) %></p>
 <div class="row">
   <div class="col-md-3">
     <%= search_form_for @q, url: filter_by_category_products_path, method: :get do |f| %>
@@ -30,25 +30,29 @@
   </div>
 
   <div class="product-show col-md-9">
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-3">
-        <%= sort_link(@q, :rating, t(".rating")) %>
+    <% if @total_results.zero? %>
+      <p><%= t ".no_products_found", query: @query %></p>
+    <% else %>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3">
+          <%= sort_link(@q, :rating, t(".rating")) %>
+        </div>
+        <div class="col-3">
+          <%= sort_link(@q, :price, t(".price")) %>
+        </div>
+        <div class="col-3">
+          <%= sort_link(@q, :sold, t(".sold")) %>
+        </div>
       </div>
-      <div class="col-3">
-        <%= sort_link(@q, :price, t(".price")) %>
-      </div>
-      <div class="col-3">
-        <%= sort_link(@q, :sold, t(".sold")) %>
-      </div>
-    </div>
-    <ul id="product-display" class="product-display-list">
-      <% if @products_search.present? %>
-        <%= render partial: "products/product_list", collection: @products_search, as: :product %>
-      <% elsif @products_filtered.present? %>
-        <%= render partial: "products/product_list", collection: @products_filtered, as: :product %>
-      <% end %>
-    </ul>
-    <%== pagy_bootstrap_nav(@pagy) %>
+      <ul id="product-display" class="product-display-list">
+        <% if @products_search.present? %>
+          <%= render partial: "products/product_list", collection: @products_search, as: :product %>
+        <% elsif @products_filtered.present? %>
+          <%= render partial: "products/product_list", collection: @products_filtered, as: :product %>
+        <% end %>
+      </ul>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    <% end %>
   </div>
 </div>

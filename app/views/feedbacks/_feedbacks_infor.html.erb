@@ -18,6 +18,14 @@
         <%= render 'rating_stars', rating: feedback.rating %>
       </p>
       <p><strong><%= t("feedbacks.comment") %>: </strong><%= feedback.comment %></p>
+      <% if feedback.image.attached? %>
+        <div class="feedback-image">
+          <strong><%= t("feedbacks.image") %>: </strong>
+          <img id="preview_image" src="<%= url_for(resized_image(feedback)) %>" />
+        </div>
+      <% else %>
+        <img id="preview_image" src="#" alt="Image Preview" style="display: none; max-width: 100%; margin-top: 10px;" />
+      <% end %>
     </div>
   </div>
   <div class="col-md-6 feedback-col d-flex flex-column">
