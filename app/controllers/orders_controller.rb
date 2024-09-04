@@ -72,7 +72,13 @@ class OrdersController < ApplicationController
   def set_order_items
     @order_items = @order_items_ids.map do |id|
       cart = Cart.find_by(id:)
-      product = Product.find_by id: cart.product_id
+      product = Product.find_by id: cart&.product_id
+
+      if cart.blank? || product.blank?
+        flash[:warning] = t "flash.not_found_product"
+        redirect_to carts_path and break
+      end
+
       item_total = calculate_item_total(cart)
       {cart:, product:, item_total:}
     end
@@ -92,34 +98,32 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update_product_stock_and_sold order_items
-    order_items.each do |item|
-      product = item.product
-      next if product.nil?
+  def handle_successful_order
+    UpdateProductStockJob.perform_later(@order.order_items.as_json(
+                                          only: %i(product_id quantity)
+                                        ))
+    @order.update paid_at: Time.current
+    ClearCartJob.perform_later @order_items_ids
+    cookies.delete(:cartitemids)
+    cookies.delete(:total)
+    flash[:success] = t "orders.order_info.messages.success"
+    redirect_to orders_path
+  end
 
-      amount = item.quantity
-      if product.stock.nil?
-        product.update(stock: 0)
-        product.increment(stock_amount: 0, sold_amount: amount)
-        product.update(stock: nil)
-      else
-        product.increment(stock_amount: -amount, sold_amount: amount)
-      end
+  def handle_failed_order
+    if @order.order_items.any?{|item| item.errors[:quantity].any?}
+      flash[:error] = t "orders.order_info.messages.quantity"
+      redirect_to carts_path and return
     end
+    render :order_info, status: :unprocessable_entity
   end
 
   def process_order
     add_order_items
     if @order.save
-      update_product_stock_and_sold @order.order_items
-      @order.update(paid_at: Time.current)
-      Cart.by_id(@order_items_ids).destroy_all
-      cookies.delete(:cartitemids)
-      cookies.delete(:total)
-      flash[:success] = t "orders.order_info.messages.success"
-      redirect_to orders_path
+      handle_successful_order
     else
-      render :order_info, status: :unprocessable_entity
+      handle_failed_order
     end
   end
 

@@ -30,7 +30,7 @@
     </p>
 
     <div id="cart_button_<%= @product.id %>">
-      <% if @product.stock.zero? %>
+      <% if @product.stock&.zero? %>
         <p class="soldout"><%= t "products.soldout" %></p>
       <% else %>
         <%= render partial: "carts/cart_button",

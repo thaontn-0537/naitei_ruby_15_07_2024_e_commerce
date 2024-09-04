@@ -52,7 +52,9 @@ class Order < ApplicationRecord
                        end
 
     Order.transaction do
-      update_product_stock_sold
+      CancelOrderUpdateStockJob.perform_later(order_items.as_json(
+                                                only: %i(product_id quantity)
+                                              ))
       update!(
         status: :cancelled,
         refuse_reason: formatted_reason
@@ -62,21 +64,5 @@ class Order < ApplicationRecord
     error_message = I18n.t("admin.orders.orders_list.update_failed")
     errors.add(:base, error_message)
     false
-  end
-
-  def update_product_stock_sold
-    order_items.each do |order_item|
-      product = order_item.product
-      next if product.nil?
-
-      amount = order_item.quantity
-      if product.stock.nil?
-        product.update(stock: 0)
-        product.increment(stock_amount: 0, sold_amount: -amount)
-        product.update(stock: nil)
-      else
-        product.increment(stock_amount: amount, sold_amount: -amount)
-      end
-    end
   end
 end

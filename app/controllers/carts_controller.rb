@@ -135,7 +135,11 @@ class CartsController < ApplicationController
   end
 
   def increment_cart_quantity
-    stock = @cart.product.stock
+    if @cart.product.nil?
+      flash[:warning] = t "flash.not_found_product"
+      redirect_to root_path and return
+    end
+    stock = @cart.product.stock || Settings.value.max_numeric
     if @cart.quantity < stock
       @cart.update quantity: @cart.quantity + 1
     else
@@ -150,7 +154,7 @@ class CartsController < ApplicationController
 
   def create_cart
     product = Product.find params[:product_id]
-    if product.stock.zero?
+    if product.stock&.zero?
       flash[:error] = t "flash.no_stock"
     elsif @cart.new_record? || @cart.quantity <= 0
       @cart = current_user.carts.new(product_id: params[:product_id],

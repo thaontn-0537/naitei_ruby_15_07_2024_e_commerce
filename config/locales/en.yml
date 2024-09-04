@@ -163,6 +163,7 @@ en:
       messages:
         success: "Order placed successfully!"
         failed: "Order information is invalid. Please check again."
+        quantity: "The quantity of the product exceeds the available stock."
     statuses:
       pending: "Pending"
       preparing: "Preparing"
