@@ -1,0 +1,7 @@
+<% (1..5).each do |star| %>
+  <% if star <= rating %>
+    <%= content_tag :span, "★", class: "star filled" %>
+  <% else %>
+    <%= content_tag :span, "☆", class: "star" %>
+  <% end %>
+<% end %>

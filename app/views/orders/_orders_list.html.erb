@@ -30,6 +30,16 @@
       <% end %>
     </td>
   <% elsif order.status_delivered? %>
-    <td><%= order.user.user_name %></td>
+     <% if can_repurchase?(order) %>
+        <td>
+          <%= link_to t("orders.repurchase"), order_path(order), class: "btn btn-secondary" %>
+        </td>
+      <% end %>
+
+      <% if can_review?(order) %>
+        <td>
+          <%= link_to t("orders.review"), order_path(order), class: "btn btn-primary" %>
+        </td>
+      <% end %>
   <% end %>
 </tr>

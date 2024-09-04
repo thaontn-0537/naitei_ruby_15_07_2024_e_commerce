@@ -1,0 +1,21 @@
+<div class="review-box shadow">
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <%= image_tag "pfp.png", class: "pfp-image" %>
+      <p class="reviewer-name"><%= feedback.user.user_name %></p>
+    </div>
+
+    <div class="col-md-10">
+      <div class="review-header">
+        <p><strong><%= t ".rating" %>:</strong> <%= render "orders/rating_stars", rating: feedback.rating %></p>
+      </div>
+      <div class="review-body">
+        <p><strong><%= t ".comment" %>:</strong> <%= feedback.comment %></p>
+      </div>
+      <div class="review-footer">
+        <p><strong><%= t ".date" %>:</strong> <%= feedback.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="review-divider">

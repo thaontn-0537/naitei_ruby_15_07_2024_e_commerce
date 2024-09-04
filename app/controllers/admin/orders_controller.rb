@@ -3,15 +3,7 @@ class Admin::OrdersController < AdminController
   before_action :find_order, only: %i(update_status show)
 
   def index
-    sort_by = params[:sort_by].present? ? params[:sort_by].to_sym : nil
-    @orders = case sort_by
-              when :status
-                @orders.sorted_by(:status, :asc)
-              when :created_at
-                @orders.sorted_by(:created_at, :asc)
-              else
-                @orders.sorted_by(:updated_at, :desc)
-              end
+    @orders = @orders.sorted_by(params[:sort_by], params[:direction])
     @pagy, @orders = pagy @orders, limit: Settings.page_10
   end
 

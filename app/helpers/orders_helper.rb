@@ -84,10 +84,10 @@ module OrdersHelper
   def sortable column, title = nil
     title ||= t(".#{column}")
     direction = if column.to_s == params[:sort_by] &&
-                   params[:direction] == "asc"
-                  "desc"
-                else
+                   params[:direction] == "desc"
                   "asc"
+                else
+                  "desc"
                 end
     link_to title, orders_sort_path(
       column, params[:status] || :all, direction:

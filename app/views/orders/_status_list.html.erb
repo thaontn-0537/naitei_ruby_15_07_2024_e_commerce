@@ -1,6 +1,6 @@
 <div class="status-buttons">
-  <%= link_to t(".all", count: @orders_count.count), orders_path, class: "btn btn-outline-primary #{@current_status == "all" ? "active" : ""}", data: {turbo_frame: "order_list"} %>
+  <%= link_to t("orders.status_list.all", count: @orders_count.count), orders_path, class: "btn btn-outline-primary status-button #{@current_status == :all ? "active" : ""}", data: {turbo_frame: "order_list"} %>
   <% Order.statuses.keys.each do |status| %>
-    <%= link_to "#{status_name(status)} (#{@orders_count.where(status: status).count})", orders_path(status: status), class: "btn btn-outline-primary #{@current_status == status ? "active" : ""}", data: {turbo_frame: "order_list"} %>
+    <%= link_to "#{status_name(status)} (#{@orders_count.where(status: status).count})", orders_path(status: status), class: "btn btn-outline-primary status-button #{@current_status == status.to_sym ? "active" : ""}", data: {turbo_frame: "order_list"} %>
   <% end %>
 </div>

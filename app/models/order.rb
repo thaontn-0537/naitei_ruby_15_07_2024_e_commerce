@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   ORDER_PARAMS = %i(place payment_method user_name user_phone).freeze
   belongs_to :user
   has_many :order_items, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   enum status: {
     pending: 0,
@@ -28,7 +29,9 @@ class Order < ApplicationRecord
     end
   }
 
-  scope :sorted_by, ->(field, direction){order(field => direction)}
+  scope :sorted_by, lambda {|field = "status", direction = "desc"|
+    order(Arel.sql("#{field} #{direction}"))
+  }
 
   scope :recently_updated, ->{order(updated_at: :desc)}
 

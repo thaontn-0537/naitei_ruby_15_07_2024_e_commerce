@@ -24,14 +24,37 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by id: params[:id]
+    @product = Product.find_by(id: params[:id])
+
     if @product
-      if current_user
-        @cart = current_user&.carts&.find_by product_id: @product.id
-      end
+      update_product_rating
+      load_feedbacks
+      load_cart_for_current_user
     else
-      flash[:warning] = t "flash.not_found_product"
-      redirect_to root_path
+      handle_product_not_found
     end
+  end
+
+  private
+
+  def update_product_rating
+    @product.update_rating
+  end
+
+  def load_feedbacks
+    @feedbacks = @product.feedbacks
+                         .includes(:user)
+                         .sort_by_field(params[:sort_by], params[:direction])
+  end
+
+  def load_cart_for_current_user
+    return unless current_user
+
+    @cart = current_user.carts.find_by(product_id: @product.id)
+  end
+
+  def handle_product_not_found
+    flash[:warning] = t "flash.not_found_product"
+    redirect_to root_path
   end
 end

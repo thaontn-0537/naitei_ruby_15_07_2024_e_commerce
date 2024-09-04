@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     resources :orders, only: %i(show index) do
       member do
         patch :update_status
-        post :create_feedback
       end
+      resources :feedbacks, only: %i(create update)
     end
     namespace :admin do
       resources :orders, only: %i(index show) do

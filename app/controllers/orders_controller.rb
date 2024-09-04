@@ -1,16 +1,10 @@
 class OrdersController < ApplicationController
   include OrdersHelper
+  include FeedbacksHelper
   before_action :set_order_items_ids, :set_default_data, :set_order_items,
                 only: %i(order_info create)
   before_action :set_orders, only: %i(index)
   before_action :find_order, only: %i(update_status show)
-
-  def index
-    @orders = @orders.sorted_by(
-      params[:sort_by] || :updated_at, params[:direction] || :desc
-    )
-    @pagy, @orders = pagy @orders, limit: Settings.page_10
-  end
 
   def show
     if @order.user_id == current_user.id
@@ -18,6 +12,12 @@ class OrdersController < ApplicationController
         @order.order_items,
         items: Settings.page_10
       )
+      @order_items_with_feedback = @order.order_items.map do |order_item|
+        {
+          order_item:,
+          feedback: feedback_for_order_item(order_item, current_user)
+        }
+      end
     else
       flash[:error] = t "flash.order_not_found"
       redirect_to root_path
@@ -44,6 +44,11 @@ class OrdersController < ApplicationController
     @orders = fetch_orders
     @current_status = determine_current_status
     @orders_count = @current_user.orders.recently_updated
+  end
+
+  def index
+    @orders = @orders.sorted_by(params[:sort_by], params[:direction])
+    @pagy, @orders = pagy @orders, limit: Settings.page_10
   end
 
   def update_status
