@@ -14,10 +14,12 @@ class Product < ApplicationRecord
   validates :description,
             length: {maximum: Settings.value.max_name}
   validates :price, presence: true,
-            numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
+            numericality: {greater_than_or_equal_to: Settings.value.min_numeric,
+                           less_than_or_equal_to: Settings.value.max_numeric}
   validates :stock,
             allow_nil: true,
-            numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
+            numericality: {greater_than_or_equal_to: Settings.value.min_numeric,
+                           less_than_or_equal_to: Settings.value.max_numeric}
   validates :rating,
             numericality: {greater_than_or_equal_to: Settings.value.min_numeric,
                            less_than_or_equal_to: Settings.value.rate_max},

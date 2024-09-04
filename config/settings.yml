@@ -7,6 +7,7 @@ value:
   phone_format: \A(84|0)(3|5|7|8|9)[0-9]{8}\z
   comment_length: 1000
   min_numeric: 0
+  max_numeric: 2000000000
   rate_min: 1
   rate_max: 5
   max_name: 255
