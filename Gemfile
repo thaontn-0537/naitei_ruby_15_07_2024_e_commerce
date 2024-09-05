@@ -3,6 +3,7 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 
 ruby "3.2.2"
 
+gem "activerecord-import"
 gem "active_storage_validations", "0.9.8"
 gem "bcrypt", "3.1.18"
 gem "bootsnap", require: false
@@ -24,6 +25,7 @@ gem "rails", "~> 7.0.5"
 gem "rails_config"
 gem "ransack"
 gem "sassc-rails"
+gem "sidekiq"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "toastr-rails"

@@ -1,6 +1,6 @@
 <div class="order-item">
   <div class="item-image">
-    <%= image_tag order_item[:product].image %>
+    <%= image_tag(resized_image(order_item[:product])) %>
   </div>
   <div class="item-details">
     <p><%= order_item[:product].product_name %></p>

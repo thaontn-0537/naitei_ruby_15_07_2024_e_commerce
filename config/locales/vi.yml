@@ -177,6 +177,7 @@ vi:
       messages:
         success: "Đặt hàng thành công!"
         failed: "Thông tin đặt hàng không hợp lệ. Vui lòng kiểm tra lại."
+        quantity: "Số lượng của sản phẩm vượt quá lượng hàng tồn kho"
     show:
       title: "Đơn hàng"
       flash:

@@ -1,4 +1,7 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq"
   scope "(:locale)", locale: /vi|en/ do
     delete "/logout", to: "sessions#destroy"
     root "static_pages#index"
