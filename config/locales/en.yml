@@ -47,6 +47,15 @@ en:
       english: "English"
       vietnamese: "Vietnamese"
   users:
+    id: "User ID"
+    avatar: "Avatar"
+    name: "Name"
+    email: "Email"
+    phone: "Phone Number"
+    address: "Address"
+    orders_count: "Orders Count"
+    created_at: "Created At"
+    placeholder: "Search by user name or email"
     new:
       title: "Sign up"
       signup: "Sign up"

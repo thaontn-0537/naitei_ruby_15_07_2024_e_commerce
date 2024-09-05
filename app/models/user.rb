@@ -57,6 +57,27 @@ class User < ApplicationRecord
     update_column :remember_digest, nil
   end
 
+  def self.ransackable_attributes _auth_object = nil
+    %w(
+      created_at
+      email
+      id
+      phone
+      role
+      updated_at
+      user_name
+    )
+  end
+
+  def self.ransackable_associations _auth_object = nil
+    %w(
+      addresses
+      image_attachment
+      image_blob
+      orders
+    )
+  end
+
   private
 
   def downcase_email

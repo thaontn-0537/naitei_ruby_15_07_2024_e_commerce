@@ -1,0 +1,58 @@
+<div class="admin-product-show">
+  <%= search_form_for @q, url: admin_users_path, method: :get, local: true, class: "d-flex mx-3 flex-grow-1 justify-content-center" do |f| %>
+    <%= f.text_field :user_name_or_email_cont, value: @query, class: "form-control me-2 custom-search", placeholder: t("users.placeholder"), aria: { label: t("users.placeholder") } %>
+    <%= f.submit t("layouts.header.search.search_button"), class: "btn btn-outline-success" do %>
+      <i class="bi bi-search"></i>
+    <% end %>
+  <% end %>
+
+  <div class="filter_show">
+    <div class="col-md-4 filter-frame">
+      <%= search_form_for @q, url: admin_users_path, method: :get do |f| %>
+        <%= f.hidden_field :user_name_cont, value: @query %>
+
+        <div class="form-group">
+          <%= f.label :created_at_range, t("users.created_at") %>
+          <div class="price-range-filter__inputs d-flex align-items-center">
+            <%= f.date_field :created_at_gteq, class: "form-control me-2" %>
+            <span class="me-2">-</span>
+            <%= f.date_field :created_at_lteq, class: "form-control ms-2" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :phone_cont, t("users.phone") %>
+          <%= f.number_field :phone_cont, class: "form-control" %>
+        </div>
+
+        <%= f.submit t("products.search.filter"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <div>
+        <table class="table table-striped table-hover order-list">
+          <thead>
+            <tr>
+              <th><%= t "users.id" %></th>
+              <th><%= t "users.avatar" %></th>
+              <th><%= t "users.name" %></th>
+              <th><%= t "users.phone" %></th>
+              <th><%= t "users.email" %></th>
+              <th><%= t "users.address" %></th>
+              <th><%= t "users.orders_count" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @users_search.present? %>
+              <%= render partial: "admin/users/users_list", collection: @users_search, as: :user %>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <%== pagy_bootstrap_nav @pagy %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

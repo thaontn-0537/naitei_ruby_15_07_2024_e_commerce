@@ -21,7 +21,7 @@
               <%= nav_link_to t("admin_nav.products"), admin_products_path(q: {product_name_cont: ""}) %>
             </li>
             <li class="nav-item">
-              <%= link_to t("admin_nav.customers"), "#", class: "nav-link" %>
+              <%= nav_link_to t("admin_nav.customers"), admin_users_path(q: {search_all_cont: ""}), class: "nav-link" %>
             </li>
           </ul>
 
