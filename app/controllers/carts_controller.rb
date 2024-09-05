@@ -167,7 +167,7 @@ class CartsController < ApplicationController
   end
 
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
 
     flash[:warning] = t ".login_required"
     redirect_to login_path
