@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource
   include OrdersHelper
   include FeedbacksHelper
   before_action :set_order_items_ids, :set_default_data, :set_order_items,
@@ -7,20 +8,15 @@ class OrdersController < ApplicationController
   before_action :find_order, only: %i(update_status show)
 
   def show
-    if @order.user_id == current_user.id
-      @pagy, @order_items = pagy(
-        @order.order_items,
-        items: Settings.page_10
-      )
-      @order_items_with_feedback = @order.order_items.map do |order_item|
-        {
-          order_item:,
-          feedback: feedback_for_order_item(order_item, current_user)
-        }
-      end
-    else
-      flash[:error] = t "flash.order_not_found"
-      redirect_to root_path
+    @pagy, @order_items = pagy(
+      @order.order_items,
+      items: Settings.page_10
+    )
+    @order_items_with_feedback = @order.order_items.map do |order_item|
+      {
+        order_item:,
+        feedback: feedback_for_order_item(order_item, current_user)
+      }
     end
   end
 
@@ -29,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = @current_user.orders.new order_params
+    @order = current_user.orders.new order_params
     @order.total = calculate_total_amount @order_items_ids
 
     if @order.valid?
@@ -43,7 +39,7 @@ class OrdersController < ApplicationController
   def set_orders
     @orders = fetch_orders
     @current_status = determine_current_status
-    @orders_count = @current_user.orders.recently_updated
+    @orders_count = current_user.orders.recently_updated
   end
 
   def index
@@ -64,9 +60,8 @@ class OrdersController < ApplicationController
   private
 
   def set_default_data
-    @current_user = current_user
-    @addresses = @current_user.addresses.sort_by_time
-    @address = @current_user.addresses.default_or_latest
+    @addresses = current_user.addresses.sort_by_time
+    @address = current_user.addresses.default_or_latest
   end
 
   def set_order_items

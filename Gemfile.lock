@@ -85,6 +85,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
     builder (3.2.4)
+    cancancan (3.6.1)
     capybara (3.39.2)
       addressable
       matrix
@@ -116,10 +117,10 @@ GEM
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0-x86_64-linux-gnu)
-    font-awesome-sass (6.5.2)
-      sassc (~> 2.0)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.5)
@@ -333,13 +334,14 @@ DEPENDENCIES
   bcrypt (= 3.1.18)
   bootsnap
   bootstrap-sass (= 3.4.1)
+  cancancan
   capybara
   config
   debug
   devise
   faker (= 2.21.0)
-  font-awesome-sass (~> 6.0)
   figaro
+  font-awesome-sass (~> 6.0)
   image_processing (= 1.12.2)
   importmap-rails
   jbuilder

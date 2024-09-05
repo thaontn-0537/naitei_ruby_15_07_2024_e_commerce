@@ -1,10 +1,23 @@
 class ApplicationController < ActionController::Base
   before_action :configure_sign_up_params, if: :devise_controller?
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path
+    flash[:danger] = exception.message
+  end
+
   include Pagy::Backend
 
   def default_url_options
     {locale: I18n.locale}
+  end
+
+  def after_sign_in_path_for resource
+    if resource.role_admin?
+      admin_orders_path
+    else
+      root_path
+    end
   end
 
   before_action :set_search_query

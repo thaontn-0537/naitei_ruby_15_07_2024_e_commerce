@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource only: :show
   def search
     @categories = Category.all
     @query = params[:q][:product_name_cont]
@@ -26,15 +27,9 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
-
-    if @product
-      update_product_rating
-      load_feedbacks
-      load_cart_for_current_user
-    else
-      handle_product_not_found
-    end
+    update_product_rating
+    load_feedbacks
+    load_cart_for_current_user
   end
 
   private
@@ -53,10 +48,5 @@ class ProductsController < ApplicationController
     return unless current_user
 
     @cart = current_user.carts.find_by(product_id: @product.id)
-  end
-
-  def handle_product_not_found
-    flash[:warning] = t "flash.not_found_product"
-    redirect_to root_path
   end
 end
