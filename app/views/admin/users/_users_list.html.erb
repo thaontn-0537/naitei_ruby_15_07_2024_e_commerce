@@ -1,0 +1,11 @@
+<tr>
+  <td><%= user.id %></td>
+  <td class="product-image">
+    <%= image_tag(resized_image(user), alt: user.user_name) %>
+  </td>
+  <td class="product-name"><%= user.user_name %></td>
+  <td><%= user.phone %></td>
+  <td><%= user.email %></td>
+  <td><%= display_user_addresses user %></td>
+  <td class="product-name"><%= user.orders.count %></td>
+</tr>

@@ -57,6 +57,15 @@ vi:
       vietnamese: "Tiếng Việt"
       english: "Tiếng Anh"
   users:
+    id: "ID Người dùng"
+    avatar: "Ảnh đại diện"
+    name: "Tên"
+    email: "Email"
+    phone: "Số điện thoại"
+    address: "Địa chỉ"
+    orders_count: "Số đơn"
+    created_at: "Ngày tạo tài khoản"
+    placeholder: "Tìm kiếm bằng tên hoặc email"
     new:
       title: "Đăng ký"
       signup: "Đăng ký"
