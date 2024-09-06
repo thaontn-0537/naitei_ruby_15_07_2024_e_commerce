@@ -1,4 +1,5 @@
 class FeedbacksController < ApplicationController
+  load_and_authorize_resource
   def create
     feedback_params = build_feedback_params
 

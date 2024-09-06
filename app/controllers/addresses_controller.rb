@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  load_and_authorize_resource
   def create
     @address = @current_user.addresses.new address_params
     set_default_address if @address.default

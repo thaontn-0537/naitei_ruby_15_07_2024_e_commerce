@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  load_and_authorize_resource
   before_action :find_cart_item, only: %i(update destroy)
   before_action :set_order_items_ids, only: :index
   before_action :logged_in_user, :init_data, only: %i(create update destroy)
