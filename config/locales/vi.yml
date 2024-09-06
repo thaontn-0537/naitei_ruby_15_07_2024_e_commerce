@@ -292,8 +292,26 @@ vi:
         refuse_reason: "Lý do từ chối"
         update_to_cancelled: "Xóa đơn thành công"
       not_found_product: "Không tìm thấy đơn hàng"
+    statistics:
+      title: "Doanh thu"
+      top_selling: "Sản phẩm bán chạy"
+      revenue_chart:
+        x: "Thời gian"
+        y: "Doanh thu"
+      top_selling_chart:
+        x: "Số lượng"
+        y: "Sản phẩm"
+      time_periods:
+        all_time: "Tất cả" 
+        today: "Hôm nay"
+        this_week: "Tuần này"
+        this_month: "Tháng này"
+        last_month: "Tháng trước"
+        this_year: "Năm nay"
+        three_years: "Ba năm"
   admin_nav:
     orders: "Các đơn hàng"
+    statistics: "Thống kê"
     categories: "Danh mục"
     products: "Sản phẩm"
     customers: "Người dùng"

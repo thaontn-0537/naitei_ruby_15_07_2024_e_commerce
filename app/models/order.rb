@@ -36,6 +36,68 @@ class Order < ApplicationRecord
 
   scope :recently_updated, ->{order(updated_at: :desc)}
 
+  scope(:group_by_time_range, lambda do
+    |start_time, end_time, group_method, format|
+    where(created_at: start_time..end_time)
+      .send(group_method, :created_at, format:, time_zone: "Asia/Ho_Chi_Minh")
+      .sum(:total)
+  end)
+
+  scope(:today, lambda do
+    start_of_day = Time.zone.now.beginning_of_day
+    end_of_day = Time.zone.now.end_of_day
+    group_by_time_range(start_of_day, end_of_day,
+                        :group_by_hour_of_day, "%H:%M")
+  end)
+
+  scope(:this_week, lambda do
+    start_of_week = Time.zone.now.beginning_of_week
+    end_of_week = Time.zone.now.end_of_week
+    group_by_time_range(start_of_week, end_of_week,
+                        :group_by_day, "%d-%m")
+  end)
+
+  scope(:this_month, lambda do
+    start_of_month = Time.zone.now.beginning_of_month
+    end_of_month = Time.zone.now.end_of_month
+    group_by_time_range(start_of_month, end_of_month,
+                        :group_by_day, "%d-%m")
+  end)
+
+  scope(:last_month, lambda do
+    start_of_last_month = 1.month.ago.beginning_of_month
+    end_of_last_month = 1.month.ago.end_of_month
+    group_by_time_range(start_of_last_month, end_of_last_month,
+                        :group_by_day, "%d-%m")
+  end)
+
+  scope(:this_year, lambda do
+    start_of_year = Time.zone.now.beginning_of_year
+    end_of_year = Time.zone.now.end_of_year
+    group_by_time_range(start_of_year, end_of_year,
+                        :group_by_month, "%m-%Y")
+  end)
+
+  scope(:three_years, lambda do
+    start_of_three_years_ago = 3.years.ago.beginning_of_year
+    end_of_three_years_ago = Time.zone.now.end_of_year
+    group_by_time_range(start_of_three_years_ago, end_of_three_years_ago,
+                        :group_by_year, "%Y")
+  end)
+
+  scope(:by_period, lambda do |period|
+    case period
+    when "today" then today
+    when "this_week" then this_week
+    when "this_month" then this_month
+    when "last_month" then last_month
+    when "this_year" then this_year
+    when "three_years" then three_years
+    else
+      this_month
+    end
+  end)
+
   def cancel_order role:, refuse_reason:
     formatted_reason = case role
                        when :admin

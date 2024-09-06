@@ -280,8 +280,26 @@ en:
         refuse_reason: "Refuse Reason"
         update_to_cancelled: "Cancelled Order"
       not_found_product: "Not Found Order"
+    statistics:
+      title: "Revenue"
+      top_selling: "Top Selling Products"
+      revenue_chart:
+        x: "Time"
+        y: "Revenue"
+      top_selling_chart:
+        x: "Quantity"
+        y: "Product"
+      time_periods:
+        all_time: "All time"
+        today: "Today"
+        this_week: "This week"
+        this_month: "This month"
+        last_month: "Last month"
+        this_year: "This year"
+        three_years: "Three years"
   admin_nav:
     orders: "Orders"
+    statistics: "Statistics"
     categories: "Categories"
     products: "Products"
     customers: "Customers"

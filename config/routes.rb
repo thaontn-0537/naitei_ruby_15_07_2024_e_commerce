@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       end
       resources :products, only: %i(index new create edit update show destroy)
       resources :users, only: %i(index)
+      resources :statistics, only: %i(index)
     end
   end
 end

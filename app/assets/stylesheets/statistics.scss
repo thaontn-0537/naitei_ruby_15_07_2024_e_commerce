@@ -1,0 +1,30 @@
+@import 'color';
+
+.statistics {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.statistics-title, .statistics-top-selling{
+  color: $dark-blue;
+}
+
+.statistics-revenue{
+  color: $light-pink;
+}
+
+.time-select {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 5%;
+  padding-bottom: 20px;
+}
+.revenue-chart, .top-selling-chart{
+  width: 90%;
+  margin-left: 2%;
+  margin-bottom: 30px;
+}
+.time-period {
+  padding: 0px 10px !important;
+}

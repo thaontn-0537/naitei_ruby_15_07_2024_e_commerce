@@ -1,0 +1,84 @@
+<% provide :title, t("admin.statistics.title") %>
+<div class="statistics">
+  <h1 class="statistics-title"><%= t "admin.statistics.title"%></h1>
+  <h2 class="statistics-revenue"><%= format_currency @total_revenue %></h2>
+</div>
+
+<div class="time-select">
+  <%= form_tag admin_statistics_path, method: :get, class: "filter-form", id: "revenue-time-period-form" do %>
+    <%= hidden_field_tag :time_period_selling, @time_period_selling %>
+    <%= select_tag :time_period, options_for_select([
+      [t("admin.statistics.time_periods.today"), "today"],
+      [t("admin.statistics.time_periods.this_week"), "this_week"],
+      [t("admin.statistics.time_periods.this_month"), "this_month"],
+      [t("admin.statistics.time_periods.last_month"), "last_month"],
+      [t("admin.statistics.time_periods.this_year"), "this_year"],
+      [t("admin.statistics.time_periods.three_years"), "three_years"]
+    ], @time_period), class: "form-control time-period", id: "revenue-time-period-select" %>
+  <% end %>
+</div>
+
+<div class="revenue-chart">
+  <% formatted_revenue_data = formatted_data_for_chart @revenue_data %>
+  <%= column_chart formatted_revenue_data, 
+    xtitle: t("admin.statistics.revenue_chart.x"), 
+    ytitle: t("admin.statistics.revenue_chart.y"), 
+    library: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            align: "end",
+            padding: { right: Settings.chart.title.padding }
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            align: "end",
+            padding: { top: Settings.chart.title.padding }
+          }
+        }
+      }
+    }
+  %>
+</div>
+
+<h1 class="statistics-top-selling"><%= t "admin.statistics.top_selling" %></h1>
+<div class="time-select">
+  <%= form_tag admin_statistics_path, method: :get, class: "filter-form", id: "selling-time-period-form" do %>
+    <%= hidden_field_tag :time_period, @time_period %>
+    <%= select_tag :time_period_selling, options_for_select([
+      [t("admin.statistics.time_periods.all_time"), "all_time"],
+      [t("admin.statistics.time_periods.this_week"), "this_week"],
+      [t("admin.statistics.time_periods.this_month"), "this_month"],
+      [t("admin.statistics.time_periods.this_year"), "this_year"],
+    ], @time_period_selling), class: "form-control time-period", id: "selling-time-period-select" %>
+  <% end %>
+</div>
+
+<div class="top-selling-chart">
+  <%= bar_chart @chart_data, 
+    xtitle: t("admin.statistics.top_selling_chart.x"),
+    ytitle: t("admin.statistics.top_selling_chart.y"),
+    height: "400px",                              
+    library: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            align: "end",
+            padding: { right: Settings.chart.title.padding }
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            align: "end",
+            padding: { top: Settings.chart.title.padding }
+          }
+        }
+      }
+    }
+  %>
+</div>

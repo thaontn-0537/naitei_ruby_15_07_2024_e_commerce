@@ -61,6 +61,33 @@ class Product < ApplicationRecord
     .order("score DESC")
   end)
 
+  scope(:top_selling_by_period, lambda do |period|
+    time_range = case period
+                 when "all_time"
+                   nil
+                 when "this_week"
+                   Time.zone.now.beginning_of_week..Time.zone.now.end_of_week
+                 when "this_month"
+                   Time.zone.now.beginning_of_month..Time.zone.now.end_of_month
+                 when "this_year"
+                   Time.zone.now.beginning_of_year..Time.zone.now.end_of_year
+                 end
+
+    base_query = select("products.*, SUM(order_items.quantity)
+                          AS total_quantity")
+                 .joins(:order_items)
+                 .joins("JOIN orders ON orders.id = order_items.order_id")
+                 .group("products.id")
+                 .where.not(orders: {status: 4})
+                 .order("total_quantity DESC")
+    if time_range
+      base_query.where("orders.created_at BETWEEN ? AND ?", time_range.first,
+                       time_range.last)
+    else
+      base_query
+    end
+  end)
+
   def self.ransackable_attributes _auth_object = nil
     %w(
       category_id

@@ -26,3 +26,6 @@ time_format: "%I:%M %p"
 date_time_format: "%b %d, %Y %I:%M %p"
 suggest_price: 20.000 đ
 max_time_expire: 2
+chart:
+  title:
+    padding: 20
