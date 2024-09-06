@@ -1,0 +1,4 @@
+<%= t ".subject" %>
+<%= t(".income", month: Time.current.month - 1, sum: @sum) %>
+<%= t ".more_info" %>
+<%= link_to t(".statistic_page"), admin_statistics_url %>

@@ -36,8 +36,9 @@ Rails.application.configure do
     :user_name => ENV["USER_NAME"],
     :password => ENV["USER_PASSWORD"],
     :address => ENV["MAIL_ADDRESS"],
+    :host => ENV["HOST"],
     :port => ENV["MAIL_PORT"],
-    :authentication => :login,
+    :authentication => :plain,
     enable_starttls_auto: true,
   }
 end

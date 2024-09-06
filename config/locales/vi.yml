@@ -302,7 +302,7 @@ vi:
         x: "Số lượng"
         y: "Sản phẩm"
       time_periods:
-        all_time: "Tất cả" 
+        all_time: "Tất cả"
         today: "Hôm nay"
         this_week: "Tuần này"
         this_month: "Tháng này"
@@ -325,3 +325,10 @@ vi:
     twitter: "Twitter"
     reddit: "Reddit"
     email: "Email"
+  monthly_mailer:
+    monthly_summary_email:
+      subject: "Báo cáo thống kê hàng tháng"
+      title: "Báo cáo thống kê hàng tháng"
+      income: "Doanh thu tháng %{month} của shop là %{sum}"
+      more_info: "Để biết thêm thông tin chi tiết, hãy xem ở trang thống kê: "
+      statistic_page: "Trang thống kê"
