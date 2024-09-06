@@ -9,12 +9,25 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <table class="table table-striped table-hover order-list">
-              <%= render partial: "orders/orders_header" %>
-              <tbody>
-                <%= render partial: "orders_list", collection: @orders, as: :order %>
-              </tbody>
-            </table>
+            <%= form_with url: batch_update_admin_orders_path, method: :put do %>
+              <% case @current_status %>
+              <% when :pending %>
+                <%= hidden_field_tag :new_status, :preparing %>
+                <%= submit_tag t("admin.orders.orders_list.update_to_preparing"), data: { turbo_confirm: t("admin.orders.orders_list.confirm_update_to_preparing") }, class: "btn btn-primary" %>
+              <% when :preparing %>
+                <%= hidden_field_tag :new_status, :in_transit %>
+                <%= submit_tag t("admin.orders.orders_list.update_to_in_transit"), data: { turbo_confirm: t("admin.orders.orders_list.confirm_update_to_in_transit") }, class: "btn btn-primary" %>
+              <% when :in_transit %>
+                <%= hidden_field_tag :new_status, :delivered %>
+                <%= submit_tag t("admin.orders.orders_list.update_to_delivered"), data: { turbo_confirm: t("admin.orders.orders_list.confirm_update_to_delivered") }, class: "btn btn-primary" %>
+              <% end %>
+              <table class="table table-striped table-hover order-list">
+                <%= render partial: "orders/orders_header" %>
+                <tbody>
+                  <%= render partial: "orders_list", collection: @orders, as: :order %>
+                </tbody>
+              </table>
+            <% end %>
             <div class="pagination">
               <%== pagy_bootstrap_nav(@pagy) %>
             </div>

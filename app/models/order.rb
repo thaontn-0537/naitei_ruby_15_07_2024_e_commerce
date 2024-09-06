@@ -32,6 +32,7 @@ class Order < ApplicationRecord
   scope :sorted_by, lambda {|field = "status", direction = "desc"|
     order(Arel.sql("#{field} #{direction}"))
   }
+  scope :with_ids, ->(ids){where(id: ids)}
 
   scope :recently_updated, ->{order(updated_at: :desc)}
 
