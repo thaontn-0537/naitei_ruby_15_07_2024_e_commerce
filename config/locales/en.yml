@@ -135,6 +135,7 @@ en:
       add_to_cart: "Add to cart"
       sold: "Sold"
       out_of_stock: "Sold out"
+      share_title: "This product is awesome! Try it out!"
     reviews:
       sort_by_newest: "Newest"
       sort_by_oldest: "Newest"
