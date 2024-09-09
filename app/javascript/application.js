@@ -1,5 +1,7 @@
 //= require toastr
 //= require social-share-button
+//= require chartkick
+//= require Chart.bundle
 import '@hotwired/turbo-rails'
 import 'controllers'
 import 'custom/menu'
@@ -10,6 +12,7 @@ import './orders/_receive_info.js'
 import './controllers/toastr.min'
 import './carts/cart_cookie.js'
 import './admin/image_input.js'
+import './admin/statistics.js'
 
 document.addEventListener('DOMContentLoaded', function() {
   const showLoginPopup = document.getElementById('show-login-popup');

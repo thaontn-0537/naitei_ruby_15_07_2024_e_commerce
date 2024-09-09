@@ -14,6 +14,7 @@ class OrderItem < ApplicationRecord
 
   private
   def quantity_must_not_exceed_stock
+    return if ENV["SEEDING"] == "true"
     return if product&.stock.nil?
 
     return unless quantity.present? && quantity > product.stock

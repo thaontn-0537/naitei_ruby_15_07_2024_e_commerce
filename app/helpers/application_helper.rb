@@ -51,6 +51,10 @@ module ApplicationHelper
     delimiter: ".", separator: ",")
   end
 
+  def formatted_data_for_chart data
+    data.transform_values{|value| format_currency value}
+  end
+
   def custom_bootstrap_flash
     flash_messages = flash.map do |type, message|
       next if message.blank?

@@ -21,6 +21,7 @@ class Ability
     cannot :manage, Admin::UsersController
     cannot :manage, Admin::OrdersController
     cannot :manage, Admin::ProductsController
+    cannot :manage, Admin::StatisticsController
 
     can :read, Product
     can :read, Order, user_id: user.id

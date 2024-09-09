@@ -1,14 +1,14 @@
 require "faker"
 require "open-uri"
-
+ENV["SEEDING"] = "true"
 # Seed Admin User
 admin_user = User.create!(email: "admin@email.com",
-             user_name: "Admin",
-             password: "adminaccount",
-             password_confirmation: "adminaccount",
-             role: :admin,
-             phone: "0987654322",
-             confirmed_at: DateTime.now)
+            user_name: "Admin",
+            password: "adminaccount",
+            password_confirmation: "adminaccount",
+            role: :admin,
+            phone: "0987654322",
+            confirmed_at: DateTime.now)
 
 admin_user.image.attach(
   io: URI.open("https://picsum.photos/200/200?random=1"),
@@ -186,6 +186,8 @@ users.each do |user|
   end
 end
 
+ENV["SEEDING"] = nil
+
 users.each do |user|
   sampled_products = Product.pluck(:id).sample(3)
   sampled_products.each do |product_id|
@@ -200,10 +202,16 @@ end
 products = Product.all
 
 products.each do |product|
+  order_items = OrderItem.where(product_id: product.id).to_a
   5.times do
+    break if order_items.empty?
+    order_item = order_items.sample
+    next unless order_item
+  
     feedback = Feedback.create!(
-      user_id: User.pluck(:id).sample,
+      user_id: order_item.order.user_id,
       product_id: product.id,
+      order_id: order_item.order_id,
       rating: rand(1..5),
       comment: Faker::Lorem.paragraph,
       created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
@@ -215,5 +223,6 @@ products.each do |product|
       filename: "feedback_#{feedback.id}_image.jpg",
       content_type: "image/jpeg"
     )
+    order_items.delete(order_item)
   end
 end

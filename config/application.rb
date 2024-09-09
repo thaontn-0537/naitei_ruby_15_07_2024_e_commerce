@@ -12,5 +12,6 @@ module RailsTutorial
     config.i18n.available_locales = [:vi, :en]
     config.i18n.default_locale = :vi
     config.active_job.queue_adapter = :sidekiq
+    config.time_zone = "Asia/Ho_Chi_Minh"
   end
 end
