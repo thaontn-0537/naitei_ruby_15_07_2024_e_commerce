@@ -1,0 +1,4 @@
+<h1><%= t ".subject" %></h1>
+<p><%= t(".income", month: Time.current.month - 1, sum: @sum) %></p>
+<p><%= t ".more_info" %></p>
+<p><%= link_to t(".statistic_page"), admin_statistics_url %></p>

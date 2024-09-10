@@ -308,3 +308,10 @@ en:
     comment: "Comment"
     confirm_review: "Confirm send feedback"
     image: "Image"
+  monthly_mailer:
+    monthly_summary_email:
+      subject: "Monthly Report"
+      title: "Monthly Report"
+      income: "Your income in month %{month} is %{sum}"
+      more_info: "For more information, access the detail page: "
+      statistic_page: "Statistic page"

@@ -98,6 +98,17 @@ class Order < ApplicationRecord
     end
   end)
 
+  scope :created_at_month, lambda {|month|
+    where(
+      created_at: month.beginning_of_month..
+                  month.end_of_month
+    )
+  }
+
+  def self.cal_sum_orders orders
+    orders.sum(:total)
+  end
+
   def cancel_order role:, refuse_reason:
     formatted_reason = case role
                        when :admin

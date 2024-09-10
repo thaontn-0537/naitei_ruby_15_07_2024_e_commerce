@@ -207,7 +207,7 @@ products.each do |product|
     break if order_items.empty?
     order_item = order_items.sample
     next unless order_item
-  
+
     feedback = Feedback.create!(
       user_id: order_item.order.user_id,
       product_id: product.id,

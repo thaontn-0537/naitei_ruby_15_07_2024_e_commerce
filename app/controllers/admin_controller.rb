@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   def logged_in_user
     return if user_signed_in?
 
-    store_location
+    store_location_for :user, request.fullpath
     flash[:danger] = t "message.auth.login"
     redirect_to login_path
   end
