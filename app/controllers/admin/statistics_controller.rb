@@ -9,7 +9,7 @@ class Admin::StatisticsController < AdminController
 
     @products = Product.top_selling_by_period @time_period_selling
     @chart_data = @products.map do |product|
-      [product.product_name, product.total_quantity]
+      ["#{product.id}. #{product.product_name}", product.total_quantity]
     end
   end
 
