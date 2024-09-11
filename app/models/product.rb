@@ -80,6 +80,7 @@ class Product < ApplicationRecord
                  .group("products.id")
                  .where.not(orders: {status: 4})
                  .order("total_quantity DESC")
+                 .limit(Settings.top_sell.limit)
     if time_range
       base_query.where("orders.created_at BETWEEN ? AND ?", time_range.first,
                        time_range.last)
@@ -105,12 +106,6 @@ class Product < ApplicationRecord
 
   def self.ransackable_associations _auth_object = nil
     %w(carts category feedbacks image_attachment image_blob order_items)
-  end
-
-  def increment stock_amount: 0, sold_amount: 0
-    self.stock += stock_amount
-    self.sold += sold_amount
-    save!
   end
 
   def update_rating

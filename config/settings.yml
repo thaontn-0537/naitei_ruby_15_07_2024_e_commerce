@@ -29,3 +29,5 @@ max_time_expire: 2
 chart:
   title:
     padding: 20
+top_sell:
+  limit: 10
