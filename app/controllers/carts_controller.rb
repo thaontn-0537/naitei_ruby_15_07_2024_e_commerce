@@ -119,7 +119,7 @@ class CartsController < ApplicationController
   end
 
   def find_cart_item
-    @cart = current_user.carts.find_by product_id: params[:product_id]
+    @cart = current_user.carts.find_by id: params[:id]
   end
 
   def find_cart_item_for_selection
