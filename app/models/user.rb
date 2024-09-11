@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :password, presence: true,
     length: {minimum: Settings.value.min_user_password},
     allow_nil: true
-  validates :phone,
+  validates :phone, presence: true,
             length: {is: Settings.value.phone},
             format: {with: VALID_PHONE_REGEX}
 

@@ -29,6 +29,8 @@ gem "rails_config"
 gem "ransack"
 gem "sassc-rails"
 gem "sidekiq"
+gem "simplecov"
+gem "simplecov-rcov"
 gem "social-share-button"
 gem "sprockets-rails"
 gem "stimulus-rails"
@@ -39,7 +41,8 @@ gem "whenever", require: false
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
-  gem "rspec-rails", "~> 4.0.1"
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 5.0.0"
   gem "rubocop", "~> 1.26", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.14.0", require: false
@@ -52,5 +55,6 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
   gem "webdrivers"
 end
