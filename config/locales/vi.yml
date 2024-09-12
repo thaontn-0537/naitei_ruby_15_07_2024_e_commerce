@@ -222,6 +222,7 @@ vi:
     no_orders_selected: "Không có đơn hàng nào được chọn"
     cannot_transition: "Đơn hàng #%{order_id} không thể chuyển sang trạng thái tiếp theo"
     successfully_updated: "Đơn hàng đã được cập nhật thành công"
+    not_found: "Không tồn tại đơn hàng"
   addresses:
     messages:
       success: "Thêm địa chỉ thành công!"

@@ -10,4 +10,13 @@ FactoryBot.define do
     confirmation_sent_at { Time.zone.now }
     confirmation_token { SecureRandom.urlsafe_base64 }
   end
+
+  factory :admin_user, class: "User" do
+    email { "admin@email.com" }
+    user_name { "Admin" }
+    password { "adminaccount" }
+    role { 1 }
+    phone { "0987654322" }
+    confirmed_at { Time.zone.now }
+  end
 end

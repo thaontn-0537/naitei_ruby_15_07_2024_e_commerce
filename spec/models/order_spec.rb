@@ -41,9 +41,18 @@ RSpec.describe Order, type: :model do
       let!(:order1){create(:order, status: :pending)}
       let!(:order2){create(:order, status: :delivered)}
 
-      it "returns orders filtered by status" do
-        expect(Order.by_status(:pending)).to include(order1)
-        expect(Order.by_status(:pending)).not_to include(order2)
+      context "when status is valid" do
+        it "returns orders with the specified status" do
+          expect(Order.by_status("pending")).to include(order1)
+          expect(Order.by_status("pending")).not_to include(order2)
+        end
+      end
+
+      context "when status is invalid" do
+        it "returns all orders" do
+          expect(Order.by_status("invalid_status")).to include(order1, order2)
+          expect(Order.by_status(nil)).to include(order1, order2)
+        end
       end
     end
 
@@ -125,6 +134,12 @@ RSpec.describe Order, type: :model do
         three_years_orders = Order.three_years
         expect(three_years_orders.select{|_, total| total > 0}.count).to eq(2)
       end
+
+      it "returns orders for this month when period is not recognized" do
+        result = Order.by_period("invalid_period")
+        expect(result).to match_array(Order.this_month)
+      end
+
       it "returns orders by period" do
         expect(Order.by_period("today").sum{|_, total| total}).to eq(100)
         expect(Order.by_period("this_week").sum{|_, total| total}).to eq(300)
@@ -132,6 +147,23 @@ RSpec.describe Order, type: :model do
         expect(Order.by_period("last_month").sum{|_, total| total}).to eq(400)
         expect(Order.by_period("this_year").sum{|_, total| total}).to eq(1500)
         expect(Order.by_period("three_years").sum{|_, total| total}).to eq(2100)
+      end
+    end
+
+    describe ".created_at_month" do
+      let(:current_month) { Time.zone.now }
+      let(:last_month) { 1.month.ago }
+
+      before do
+        create(:order, created_at: current_month.beginning_of_month + 2.days)
+        create(:order, created_at: current_month.end_of_month - 1.day)
+        create(:order, created_at: last_month.beginning_of_month + 3.days)
+      end
+
+      it "returns orders created in the specified month" do
+        expect(Order.created_at_month(current_month).count).to eq(2)
+        expect(Order.created_at_month(current_month).pluck(:created_at)).to all(be_between(current_month.beginning_of_month, current_month.end_of_month))
+        expect(Order.created_at_month(current_month)).not_to include(Order.created_at_month(last_month))
       end
     end
   end
@@ -166,6 +198,26 @@ RSpec.describe Order, type: :model do
           order.cancel_order(role: :user, refuse_reason: refuse_reason)
           expect(order.reload.status).to eq("cancelled")
           expect(order.refuse_reason).to eq(I18n.t("orders.refuse_reason_by_user", reason: refuse_reason))
+        end
+      end
+
+      context "when role is invalid or not provided" do
+        it "updates order status to cancelled with the original reason" do
+          order.cancel_order(role: :invalid_role, refuse_reason: refuse_reason)
+          expect(order.reload.status).to eq("cancelled")
+          expect(order.refuse_reason).to eq(refuse_reason)
+        end
+      end
+
+      context "when an ActiveRecord::RecordInvalid error is raised" do
+        before do
+          allow(order).to receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(order))
+        end
+
+        it "adds an error and returns false" do
+          result = order.cancel_order(role: :admin, refuse_reason: refuse_reason)
+          expect(result).to be_falsey
+          expect(order.errors[:base]).to include(I18n.t("admin.orders.orders_list.update_failed"))
         end
       end
     end
