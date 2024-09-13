@@ -91,3 +91,4 @@ build-iPhoneSimulator/
 /.dbeaver/
 /.vscode/
 .project
+.env

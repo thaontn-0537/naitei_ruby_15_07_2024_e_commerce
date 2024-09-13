@@ -39,6 +39,7 @@ class Order < ApplicationRecord
   scope(:group_by_time_range, lambda do
     |start_time, end_time, group_method, format|
     where(created_at: start_time..end_time)
+      .where.not(status: 4)
       .send(group_method, :created_at, format:, time_zone: "Asia/Ho_Chi_Minh")
       .sum(:total)
   end)

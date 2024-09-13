@@ -3,7 +3,7 @@ default: &default
   encoding: utf8mb4
   collation: utf8mb4_unicode_ci
   host: mysql_test
-  port: 3306
+  port: 3308
   pool: 5
 
 test:
