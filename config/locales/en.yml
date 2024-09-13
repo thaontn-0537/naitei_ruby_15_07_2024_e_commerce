@@ -210,6 +210,7 @@ en:
     no_orders_selected: "No orders selected"
     cannot_transition: "Order #%{order_id} cannot transition to the next status"
     successfully_updated: "Orders were successfully updated"
+    not_found: "Order not found"
   addresses:
     messages:
       success: "Add address successfully!"
