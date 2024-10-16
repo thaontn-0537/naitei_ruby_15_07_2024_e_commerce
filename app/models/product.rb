@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  include Searchable
   acts_as_paranoid
   PRODUCT_PARAMS = %i(category_id product_name image description price
                       stock).freeze
@@ -46,20 +47,78 @@ class Product < ApplicationRecord
     where(category_id: category_ids) if category_ids.present?
   end)
 
-  scope(:search, lambda do
-    select(
-      "products.*,
-          (#{Settings.featured.rating_weight} * COALESCE(products.rating, 0) +
-            #{Settings.featured.sold_weight} * COALESCE(products.sold, 0) +
-            #{Settings.featured.feedback_weight} * COALESCE(
-            COUNT(feedbacks.id), 0)) AS score,
-          COUNT(feedbacks.id) AS feedback_count"
+  def self.search query,
+    category_id: nil,
+    price_gteq: nil,
+    price_lteq: nil,
+    rating_gteq: nil
+    filter_conditions = []
+    filter_conditions << {term: {category_id:}} if category_id.present?
+    if price_gteq.present?
+      filter_conditions << {range: {price: {gte: price_gteq}}}
+    end
+    if price_lteq.present?
+      filter_conditions << {range: {price: {lte: price_lteq}}}
+    end
+    if rating_gteq.present?
+      filter_conditions << {range: {rating: {gte: rating_gteq}}}
+    end
+
+    __elasticsearch__.search(
+      {
+        query: {
+          function_score: {
+            query: {
+              bool: {
+                must: [
+                  {
+                    match: {
+                      product_name: {
+                        query:,
+                        fuzziness: "AUTO"
+                      }
+                    }
+                  }
+                ],
+                filter: filter_conditions
+              }
+            },
+            functions: [
+              {
+                script_score: {
+                  script: {
+                    lang: "painless",
+                    params: {
+                      rating_weight: Settings.featured.rating_weight,
+                      sold_weight: Settings.featured.sold_weight,
+                      feedback_weight: Settings.featured.feedback_weight
+                    },
+                    source: <<~SCRIPT
+                      double rating_weight = params.rating_weight;
+                      double sold_weight = params.sold_weight;
+                      double feedback_weight = params.feedback_weight;
+
+                      double rating = doc['rating'].size() != 0 ?
+                        doc['rating'].value : 0.0;
+                      double sold = doc['sold'].size() != 0 ?
+                        doc['sold'].value : 0;
+                      int feedback_count = doc['feedback_count'].size() != 0 ?
+                        doc['feedback_count'].value : 0;
+
+                      return (rating_weight * rating) +
+                        (sold_weight * sold) +
+                        (feedback_weight * feedback_count);
+                    SCRIPT
+                  }
+                }
+              }
+            ],
+            boost_mode: "sum"
+          }
+        }
+      }
     )
-    .joins("LEFT JOIN feedbacks ON feedbacks.product_id = products.id")
-    .group("products.id")
-    .having("products.rating IS NOT NULL")
-    .order("score DESC")
-  end)
+  end
 
   scope(:top_selling_by_period, lambda do |period|
     time_range = case period
