@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :configure_sign_up_params, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|

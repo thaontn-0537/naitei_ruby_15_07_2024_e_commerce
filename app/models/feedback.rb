@@ -12,11 +12,17 @@ class Feedback < ApplicationRecord
     where(user_id:, order_item_id:)
   }
   after_create :update_product_rating
+  after_save :update_product_index
+  after_destroy :update_product_index
 
   private
 
   def update_product_rating
     product.update_rating
+  end
+
+  def update_product_index
+    product.__elasticsearch__.index_document
   end
 
   scope :sort_by_field, lambda {|field = "updated_at", direction = "desc"|
