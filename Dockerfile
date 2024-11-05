@@ -9,6 +9,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
     less \
     git \
     telnet \
+    cron \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev
@@ -23,7 +24,10 @@ RUN bundle install
 
 COPY . ./
 
+RUN bundle exec whenever --update-crontab
+
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+RUN touch /var/log/cron.log
 
+CMD cron && rails server -b 0.0.0.0
